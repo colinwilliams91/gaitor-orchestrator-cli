@@ -3,7 +3,7 @@
     "PostToolUse": [
       {
         "type": "command",
-        "windows": "powershell -ExecutionPolicy Bypass -File .github\\hooks\\session-auto-commit\\auto-stage.ps1",
+        "windows": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"$root = (git rev-parse --show-toplevel 2>$null).Trim(); if ($LASTEXITCODE -eq 0 -and $root) { & (Join-Path $root '.github\\hooks\\session-auto-commit\\auto-stage.ps1') }\"",
         "linux": ".github/hooks/session-auto-commit/auto-stage.sh",
         "osx": ".github/hooks/session-auto-commit/auto-stage.sh",
         "cwd": ".",
@@ -13,7 +13,7 @@
     "Stop": [
       {
         "type": "command",
-        "windows": "powershell -ExecutionPolicy Bypass -File .github\\hooks\\session-auto-commit\\auto-commit.ps1",
+        "windows": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"$root = (git rev-parse --show-toplevel 2>$null).Trim(); if ($LASTEXITCODE -eq 0 -and $root) { & (Join-Path $root '.github\\hooks\\session-auto-commit\\auto-commit.ps1') }\"",
         "linux": ".github/hooks/session-auto-commit/auto-commit.sh",
         "osx": ".github/hooks/session-auto-commit/auto-commit.sh",
         "cwd": ".",

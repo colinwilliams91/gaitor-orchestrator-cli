@@ -45,7 +45,7 @@ The workspace hook file uses the VS Code lifecycle events `PostToolUse` and `Sto
     "PostToolUse": [
       {
         "type": "command",
-        "windows": "powershell -ExecutionPolicy Bypass -File .github\\hooks\\session-auto-commit\\auto-stage.ps1",
+        "windows": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"$root = (git rev-parse --show-toplevel 2>$null).Trim(); if ($LASTEXITCODE -eq 0 -and $root) { & (Join-Path $root '.github\\hooks\\session-auto-commit\\auto-stage.ps1') }\"",
         "linux": ".github/hooks/session-auto-commit/auto-stage.sh",
         "osx": ".github/hooks/session-auto-commit/auto-stage.sh"
       }
@@ -53,7 +53,7 @@ The workspace hook file uses the VS Code lifecycle events `PostToolUse` and `Sto
     "Stop": [
       {
         "type": "command",
-        "windows": "powershell -ExecutionPolicy Bypass -File .github\\hooks\\session-auto-commit\\auto-commit.ps1",
+        "windows": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"$root = (git rev-parse --show-toplevel 2>$null).Trim(); if ($LASTEXITCODE -eq 0 -and $root) { & (Join-Path $root '.github\\hooks\\session-auto-commit\\auto-commit.ps1') }\"",
         "linux": ".github/hooks/session-auto-commit/auto-commit.sh",
         "osx": ".github/hooks/session-auto-commit/auto-commit.sh"
       }
@@ -61,6 +61,8 @@ The workspace hook file uses the VS Code lifecycle events `PostToolUse` and `Sto
   }
 }
 ```
+
+On Windows, the hook resolves the repository root with `git rev-parse --show-toplevel` before invoking the PowerShell script. This avoids path-resolution problems with relative `-File` arguments.
 
 ## How It Works
 
