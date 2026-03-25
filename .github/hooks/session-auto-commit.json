@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "windows": "powershell -ExecutionPolicy Bypass -File .github\\hooks\\session-auto-commit\\auto-stage.ps1",
+        "linux": ".github/hooks/session-auto-commit/auto-stage.sh",
+        "osx": ".github/hooks/session-auto-commit/auto-stage.sh",
+        "cwd": ".",
+        "timeout": 15
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "windows": "powershell -ExecutionPolicy Bypass -File .github\\hooks\\session-auto-commit\\auto-commit.ps1",
+        "linux": ".github/hooks/session-auto-commit/auto-commit.sh",
+        "osx": ".github/hooks/session-auto-commit/auto-commit.sh",
+        "cwd": ".",
+        "timeout": 20
+      }
+    ]
+  }
+}

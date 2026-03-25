@@ -1,55 +1,61 @@
 ---
 name: 'Session Auto-Commit'
-description: 'Automatically commits and pushes changes when a Copilot coding agent session ends'
+description: 'Auto-stage edited files after tool use and create a fallback autosave commit when a Copilot agent session stops'
 tags: ['automation', 'git', 'productivity']
 ---
 
-# Session Auto-Commit Hook
+# Git Workflow Hooks
 
-Automatically commits and pushes changes when a GitHub Copilot coding agent session ends, ensuring your work is always saved and backed up.
+This hook package implements a three-layer Git workflow for GitHub Copilot in VS Code:
+
+- `PostToolUse` auto-stages touched files after successful tool calls
+- `/checkpoint-commit` performs intentional, diff-based commits with model-written messages
+- `Stop` creates a fallback autosave commit only if staged changes remain at session end
 
 ## Overview
 
-This hook runs at the end of each Copilot coding agent session and automatically:
-- Detects if there are uncommitted changes
-- Stages all changes
-- Creates a timestamped commit
-- Pushes to the remote repository
+The workspace-level hook file lives at `.github/hooks/session-auto-commit.json` because VS Code discovers hook configuration from `.github/hooks/*.json`.
+
+The hook package scripts live in this directory and are referenced by that top-level JSON file.
 
 ## Features
 
-- **Automatic Backup**: Never lose work from a Copilot session
-- **Timestamped Commits**: Each auto-commit includes the session end time
-- **Safe Execution**: Only commits when there are actual changes
-- **Error Handling**: Gracefully handles push failures
+- **Granular staging**: Agent-edited files are staged immediately after tool execution
+- **Intentional commits**: Use the `checkpoint-commit` skill for real diff-based commit messages
+- **Fallback autosave**: If a session ends with staged changes, they are committed safely without push
+- **Cross-platform hooks**: Separate PowerShell and shell scripts are used for Windows and Unix-like environments
 
 ## Installation
 
-1. Copy this hook folder to your repository's `.github/hooks/` directory:
-   ```bash
-   cp -r hooks/session-auto-commit .github/hooks/
-   ```
-
-2. Ensure the script is executable:
+1. Ensure the shell scripts are executable on macOS and Linux:
    ```bash
    chmod +x .github/hooks/session-auto-commit/auto-commit.sh
+   chmod +x .github/hooks/session-auto-commit/auto-stage.sh
    ```
 
-3. Commit the hook configuration to your repository's default branch
+2. Commit the hook configuration and skill files to your repository.
 
 ## Configuration
 
-The hook is configured in `hooks.json` to run on the `sessionEnd` event:
+The workspace hook file uses the VS Code lifecycle events `PostToolUse` and `Stop`:
 
 ```json
 {
-  "version": 1,
   "hooks": {
-    "sessionEnd": [
+    "PostToolUse": [
       {
         "type": "command",
-        "bash": ".github/hooks/session-auto-commit/auto-commit.sh",
-        "timeoutSec": 30
+        "windows": "powershell -ExecutionPolicy Bypass -File .github\\hooks\\session-auto-commit\\auto-stage.ps1",
+        "linux": ".github/hooks/session-auto-commit/auto-stage.sh",
+        "osx": ".github/hooks/session-auto-commit/auto-stage.sh"
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "windows": "powershell -ExecutionPolicy Bypass -File .github\\hooks\\session-auto-commit\\auto-commit.ps1",
+        "linux": ".github/hooks/session-auto-commit/auto-commit.sh",
+        "osx": ".github/hooks/session-auto-commit/auto-commit.sh"
       }
     ]
   }
@@ -58,33 +64,51 @@ The hook is configured in `hooks.json` to run on the `sessionEnd` event:
 
 ## How It Works
 
-1. When a Copilot coding agent session ends, the hook executes
-2. Checks if inside a Git repository
-3. Detects uncommitted changes using `git status`
-4. Stages all changes with `git add -A`
-5. Creates a commit with format: `auto-commit: YYYY-MM-DD HH:MM:SS`
-6. Attempts to push to remote
-7. Reports success or failure
+1. After every successful tool call, the `PostToolUse` hook runs
+2. The auto-stage script reads the hook input and stages touched files only
+3. During active work, use `/checkpoint-commit` to create a logical commit boundary from the staged diff
+4. If the session stops with staged changes still present, the `Stop` hook creates `chore(autosave): save staged changes`
+
+## Why This Split Works
+
+- Staging is cheap and reversible, so it can happen frequently
+- Commit creation is intentional and should use the model plus the staged diff
+- Autosave commits are a safety net, not the primary history you review later
+
+## Checkpoint Commit Skill
+
+This hook package is designed to work with the portable skill at `.agents/skills/checkpoint-commit/SKILL.md`.
+
+Invoke it with:
+
+```text
+/checkpoint-commit
+```
+
+You can optionally append a short intent, for example:
+
+```text
+/checkpoint-commit split out the review workflow changes
+```
 
 ## Customization
 
-You can customize the hook by modifying `auto-commit.sh`:
+You can customize the workflow by modifying these files:
 
-- **Commit Message Format**: Change the timestamp format or message prefix
-- **Selective Staging**: Use specific git add patterns instead of `-A`
-- **Branch Selection**: Push to specific branches only
-- **Notifications**: Add desktop notifications or Slack messages
+- `auto-stage.sh` / `auto-stage.ps1`: change how touched files are detected or staged
+- `auto-commit.sh` / `auto-commit.ps1`: adjust fallback autosave behavior
+- `.agents/skills/checkpoint-commit/SKILL.md`: tune how diff-based commit messages are generated
 
 ## Disabling
 
-To temporarily disable auto-commits:
+To temporarily disable the workflow:
 
-1. Remove or comment out the `sessionEnd` hook in `hooks.json`
-2. Or set an environment variable: `export SKIP_AUTO_COMMIT=true`
+1. Remove or comment out the `PostToolUse` and `Stop` entries in `.github/hooks/session-auto-commit.json`
+2. Or set `SKIP_AUTO_COMMIT=true` to disable only the fallback autosave commit
 
 ## Notes
 
-- The hook uses `--no-verify` to avoid triggering pre-commit hooks
-- Failed pushes won't block session termination
-- Requires appropriate git credentials configured
-- Works with both Copilot coding agent and GitHub Copilot CLI
+- VS Code uses `Stop` as the session-end hook event, not `sessionEnd`
+- Workspace hook files must be top-level JSON files in `.github/hooks/`
+- VS Code currently ignores Claude-style matcher filters, so the auto-stage scripts inspect the hook payload directly
+- The portable `checkpoint-commit` skill works across VS Code and GitHub Copilot CLI, but hook discovery behavior is runtime-specific

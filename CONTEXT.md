@@ -21,7 +21,7 @@
 
 ### Goals
 - Provide a lightweight, language-agnostic scaffold for AI-driven development.
-- Facilitate multi-agent parallelisation with a clear inter-agent protocol.
+- Facilitate multi-agent parallelization with a clear inter-agent protocol.
 - Be easily cloned and adapted to any project stack.
 
 ---
@@ -39,6 +39,7 @@
 | AD-007 | Issue-Driven Orchestration is the default human-team workflow | Every work unit begins as a GitHub Issue; enforced via `issue-driven-orchestration.instructions.md`, `issue-intake.agent.md`, `resolve-issue.prompt.md`, `labels.yml`, and the enhanced PR template |
 | AD-008 | Shared skills live under `.agents/skills/` | Matches the multi-harness installer layout and keeps reusable skills portable across Copilot, Claude, Codex, Cursor, and similar tools |
 | AD-009 | Root adapter files point back to `CONTEXT.md` | Gives non-Copilot harnesses a stable entrypoint without duplicating project guidance |
+| AD-010 | Git workflow automation uses three layers | `PostToolUse` stages touched files, `checkpoint-commit` creates intentional diff-based commits, and `Stop` provides fallback autosave only when staged changes remain |
 
 ---
 
@@ -98,6 +99,8 @@ _No tasks currently in flight. Update this section when work begins._
 | 2026-02-21 | Initial scaffold created | Copilot |
 | 2026-03-09 | Documented `.agents/skills/` as the canonical shared skills path and added root harness adapters | Copilot |
 | 2026-03-09 | Added a root Cursor adapter that routes to `CONTEXT.md` | Copilot |
+| 2026-03-24 | Updated the session auto-commit hook to use summarized Conventional Commits at session end without timestamps or auto-push | Copilot |
+| 2026-03-25 | Implemented three-layer Git workflow automation with PostToolUse auto-stage hooks, a portable `checkpoint-commit` skill, and Stop-hook fallback autosave | Copilot |
 
 ---
 

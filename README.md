@@ -15,6 +15,8 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
    any new task.
 5. **Drive iteration with RALPH** – use `.github/prompts/ralph-loop.prompt.md`
    when you need structured improvement cycles.
+6. **Create intentional commits** – use `/checkpoint-commit` for diff-based
+   Conventional Commits during active agentic work.
 
 ---
 
@@ -30,6 +32,9 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
 │   └── ralph.agent.md          – RALPH loop driver
 ├── instructions/         # Coding standards (.instructions.md)
 │   └── coding-standards.instructions.md
+├── hooks/                # Workspace hook files and supporting scripts
+│   ├── session-auto-commit.json
+│   └── session-auto-commit/   – auto-stage + fallback autosave scripts
 ├── plugins/              # Bundled plugin configs
 │   └── context7/         – Context7 MCP docs plugin
 ├── prompts/              # Reusable task prompts (.prompt.md)
@@ -40,6 +45,7 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
 └── copilot-instructions.md  – master workspace instructions for Copilot
 .agents/
 └── skills/               # Shared capability modules for multi-harness workflows
+   └── checkpoint-commit/     – diff-based commit checkpoint slash command
 CONTEXT.md                   # Centralized agent-alignment document
 AGENTS.md                    # Root adapter for agentic tools that read AGENTS.md
 CLAUDE.md                    # Root adapter for Claude-style harnesses
