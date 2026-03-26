@@ -49,6 +49,7 @@ overrides a rule with documented justification.
 - Public APIs and exported functions must have doc-comments.
 - Architectural decisions must be recorded in `CONTEXT.md`.
 - The Documenter agent is responsible for keeping `CONTEXT.md` current.
+- If the `CONTEXT.md` does not yet exist, create a new file in the root of the repository with a Project Overview and update it iteratively as the project evolves.
 
 ## 7. Dependency Management
 

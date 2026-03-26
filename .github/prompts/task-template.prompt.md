@@ -1,5 +1,4 @@
 ---
-mode: agent
 description: >
   Template for a well-structured task prompt. Copy and fill in the sections below.
   Use this as a starting point for any discrete unit of work handed to an agent.
@@ -8,13 +7,14 @@ description: >
 # Task: <Short Task Title>
 
 ## Context
-<!-- What is the broader goal this task contributes to? Point to CONTEXT.md if relevant. -->
+<!-- What is the broader goal this task contributes to? Point to SPEC.md and CONTEXT.md if relevant. -->
 
 ## Objective
 <!-- One-sentence statement of what must be true when this task is complete. -->
 
 ## Inputs
 <!-- Files, APIs, data, or prior agent output that this task depends on. -->
+- `SPEC.md` — current project requirements and acceptance intent
 - `CONTEXT.md` — current workspace state
 - <!-- add other inputs -->
 

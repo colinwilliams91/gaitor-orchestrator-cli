@@ -10,13 +10,15 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
 1. **Clone or use as template** – click *Use this template* on GitHub.
 2. **Open in VSCode** – Copilot will automatically pick up
    `.github/copilot-instructions.md` as workspace instructions.
-3. **Read `CONTEXT.md`** – this is the live state document that all agents share.
+3. **Start with `SPEC.md`** – capture the project problem, scope, and acceptance criteria.
+   Agents can refine this with you until the work reaches a spec-driven state.
+4. **Read `CONTEXT.md`** – this is the live state document that all agents share.
    Use `context-history.md` only for older repository milestones.
-4. **Copy a prompt** – use `.github/prompts/task-template.prompt.md` to kick off
+5. **Copy a prompt** – use `.github/prompts/task-template.prompt.md` to kick off
    any new task.
-5. **Drive iteration with RALPH** – use `.github/prompts/ralph-loop.prompt.md`
+6. **Drive iteration with RALPH** – use `.github/prompts/ralph-loop.prompt.md`
    when you need structured improvement cycles.
-6. **Create intentional commits** – use `/checkpoint-commit` for diff-based
+7. **Create intentional commits** – use `/checkpoint-commit` for diff-based
    Conventional Commits during active agentic work.
 
 ---
@@ -47,6 +49,8 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
 .agents/
 └── skills/               # Shared capability modules for multi-harness workflows
    └── checkpoint-commit/     – diff-based commit checkpoint slash command
+SPEC.md                      # Project-scoped specification draft for the current project
+template-spec.md             # Internal specification for maintaining this template itself
 CONTEXT.md                   # Centralized agent-alignment document
 context-history.md           # Historical repository milestones kept out of session-critical context
 AGENTS.md                    # Root adapter for agentic tools that read AGENTS.md
@@ -84,8 +88,9 @@ All AI-sensitive patterns are git-ignored (see `.gitignore`):
 
 ## Adapting to a New Project
 
-1. Update the **Project Overview** section of `CONTEXT.md`.
-2. Add project-specific instructions to `.github/instructions/`.
-3. Add task prompts to `.github/prompts/`.
-4. Drop shared capability modules into `.agents/skills/` as needed.
-5. Everything else stays the same — the scaffold is stack-agnostic.
+1. Rewrite `SPEC.md` so it describes the new project's problem, scope, and success criteria.
+2. Update the **Project Overview** section of `CONTEXT.md`.
+3. Add project-specific instructions to `.github/instructions/`.
+4. Add task prompts to `.github/prompts/`.
+5. Drop shared capability modules into `.agents/skills/` as needed.
+6. Everything else stays the same — the scaffold is stack-agnostic.

@@ -1,5 +1,4 @@
 ---
-mode: agent
 description: >
   Drives a single RALPH loop iteration. Paste the current state of the work below
   and the agent will produce a structured Reflect → Assess → Learn → Plan →

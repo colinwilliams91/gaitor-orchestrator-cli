@@ -10,15 +10,16 @@ all agents aligned to the latest state described in [`CONTEXT.md`](../CONTEXT.md
 
 1. **CONTEXT.md is the source of truth.** Always read it before acting and request the
    documenter agent updates it after any meaningful change. Keep `CONTEXT.md` concise; store older milestone history in `context-history.md`.
-2. **Parallelise wherever safe.** Independent sub-tasks should be dispatched to separate
+2. **`SPEC.md` is the project requirements draft.** Use it for product scope, acceptance criteria, and delivery intent. Refine it with the user when requirements are incomplete or ambiguous.
+3. **Parallelise wherever safe.** Independent sub-tasks should be dispatched to separate
    agents simultaneously. Serialise only when there is a true data dependency.
-3. **Claude implements; OpenAI reviews.** Implementation agents (Claude) write or refactor
+4. **Claude implements; OpenAI reviews.** Implementation agents (Claude) write or refactor
    code. Adversarial review agents (OpenAI) critique until consensus is reached.
-4. **RALPH loop governs iteration.** Every significant cycle follows:
+5. **RALPH loop governs iteration.** Every significant cycle follows:
    Reflect → Assess → Learn → Plan → Hypothesize before executing.
-5. **Language/framework agnostic.** All scaffolding must remain generic. No
+6. **Language/framework agnostic.** All scaffolding must remain generic. No
    project-specific assumptions belong here.
-6. **Secrets never leave the machine.** Never include API keys, tokens, or credentials
+7. **Secrets never leave the machine.** Never include API keys, tokens, or credentials
    in any committed file. Use `.env` (already git-ignored) or a secrets manager.
 
 ---
@@ -33,6 +34,8 @@ all agents aligned to the latest state described in [`CONTEXT.md`](../CONTEXT.md
 | `.github/plugins/` | Bundled plugin configurations |
 | `.github/scripts/` | Utility/maintenance scripts |
 | `.agents/skills/` | Shared capability modules installed for multi-harness reuse |
+| `SPEC.md` | Project-scoped specification draft refined by the user and agents |
+| `template-spec.md` | Internal design rationale for maintaining this scaffold |
 | `CONTEXT.md` | Live workspace state – updated by the documenter agent |
 | `context-history.md` | Historical milestone log kept outside the session-critical context file |
 | `AGENTS.md` / `CLAUDE.md` | Thin root adapters for non-Copilot harnesses |
