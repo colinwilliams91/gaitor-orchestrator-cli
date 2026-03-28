@@ -15,3 +15,5 @@ Use git history when you need exact diffs, authorship, or commit-level details.
 | 2026-03-24 | Updated the session auto-commit hook to use summarized Conventional Commits at session end without timestamps or auto-push | Copilot |
 | 2026-03-25 | Implemented three-layer Git workflow automation with PostToolUse auto-stage hooks, a portable `checkpoint-commit` skill, and Stop-hook fallback autosave | Copilot |
 | 2026-03-26 | Split `CONTEXT.md` history into compact Recent Milestones and a separate historical timeline file | Copilot |
+| 2026-03-26 | Replaced the root `SPEC.md` with a project-spec starter template and moved template-internal specification notes to `template-spec.md` | Copilot |
+| 2026-03-26 | Added `/refine-spec` and documented a human-gated spec sync workflow for Orchestrator and Implementer | Copilot |

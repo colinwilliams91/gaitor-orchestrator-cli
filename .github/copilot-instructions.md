@@ -11,15 +11,16 @@ all agents aligned to the latest state described in [`CONTEXT.md`](../CONTEXT.md
 1. **CONTEXT.md is the source of truth.** Always read it before acting and request the
    documenter agent updates it after any meaningful change. Keep `CONTEXT.md` concise; store older milestone history in `context-history.md`.
 2. **`SPEC.md` is the project requirements draft.** Use it for product scope, acceptance criteria, and delivery intent. Refine it with the user when requirements are incomplete or ambiguous.
-3. **Parallelise wherever safe.** Independent sub-tasks should be dispatched to separate
+3. **A user gesture is required for spec writes unless overridden with permissions.** Agents may consult `SPEC.md` by default for feature work, but they must not update it unless the user explicitly requests a spec update, invokes `/refine-spec`, or approves applying proposed spec changes.
+4. **Parallelise wherever safe.** Independent sub-tasks should be dispatched to separate
    agents simultaneously. Serialise only when there is a true data dependency.
-4. **Claude implements; OpenAI reviews.** Implementation agents (Claude) write or refactor
+5. **Claude implements; OpenAI reviews.** Implementation agents (Claude) write or refactor
    code. Adversarial review agents (OpenAI) critique until consensus is reached.
-5. **RALPH loop governs iteration.** Every significant cycle follows:
+6. **RALPH loop governs iteration.** Every significant cycle follows:
    Reflect → Assess → Learn → Plan → Hypothesize before executing.
-6. **Language/framework agnostic.** All scaffolding must remain generic. No
+7. **Language/framework agnostic.** All scaffolding must remain generic. No
    project-specific assumptions belong here.
-7. **Secrets never leave the machine.** Never include API keys, tokens, or credentials
+8. **Secrets never leave the machine.** Never include API keys, tokens, or credentials
    in any committed file. Use `.env` (already git-ignored) or a secrets manager.
 
 ---

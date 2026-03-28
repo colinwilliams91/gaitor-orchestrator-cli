@@ -14,11 +14,13 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
    Agents can refine this with you until the work reaches a spec-driven state.
 4. **Read `CONTEXT.md`** – this is the live state document that all agents share.
    Use `context-history.md` only for older repository milestones.
-5. **Copy a prompt** – use `.github/prompts/task-template.prompt.md` to kick off
+5. **Refine the spec when needed** – use `/refine-spec` to turn a rough `SPEC.md`
+   draft into something implementation-ready with explicit user approval.
+6. **Copy a prompt** – use `.github/prompts/task-template.prompt.md` to kick off
    any new task.
-6. **Drive iteration with RALPH** – use `.github/prompts/ralph-loop.prompt.md`
+7. **Drive iteration with RALPH** – use `.github/prompts/ralph-loop.prompt.md`
    when you need structured improvement cycles.
-7. **Create intentional commits** – use `/checkpoint-commit` for diff-based
+8. **Create intentional commits** – use `/checkpoint-commit` for diff-based
    Conventional Commits during active agentic work.
 
 ---
@@ -42,7 +44,8 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
 │   └── context7/         – Context7 MCP docs plugin
 ├── prompts/              # Reusable task prompts (.prompt.md)
 │   ├── task-template.prompt.md
-│   └── ralph-loop.prompt.md
+│   ├── ralph-loop.prompt.md
+│   └── refine-spec.prompt.md
 ├── scripts/              # Utility/maintenance scripts
 │   └── sync-context.sh   – reminds Documenter to refresh CONTEXT.md
 └── copilot-instructions.md  – master workspace instructions for Copilot
@@ -89,8 +92,9 @@ All AI-sensitive patterns are git-ignored (see `.gitignore`):
 ## Adapting to a New Project
 
 1. Rewrite `SPEC.md` so it describes the new project's problem, scope, and success criteria.
-2. Update the **Project Overview** section of `CONTEXT.md`.
-3. Add project-specific instructions to `.github/instructions/`.
-4. Add task prompts to `.github/prompts/`.
-5. Drop shared capability modules into `.agents/skills/` as needed.
-6. Everything else stays the same — the scaffold is stack-agnostic.
+2. Use `/refine-spec` to iteratively tighten the spec with explicit human approval for spec edits.
+3. Update the **Project Overview** section of `CONTEXT.md`.
+4. Add project-specific instructions to `.github/instructions/`.
+5. Add task prompts to `.github/prompts/`.
+6. Drop shared capability modules into `.agents/skills/` as needed.
+7. Everything else stays the same — the scaffold is stack-agnostic.

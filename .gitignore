@@ -167,6 +167,7 @@ ai-cache/
 .ai.local.*
 .copilot.local.*
 mcp.local.json
+template-spec.md
 
 # API keys / credentials that may appear near AI config
 *.pem

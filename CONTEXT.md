@@ -40,6 +40,8 @@
 | AD-008 | Shared skills live under `.agents/skills/` | Matches the multi-harness installer layout and keeps reusable skills portable across Copilot, Claude, Codex, Cursor, and similar tools |
 | AD-009 | Root adapter files point back to `CONTEXT.md` | Gives non-Copilot harnesses a stable entrypoint without duplicating project guidance |
 | AD-010 | Git workflow automation uses three layers | `PostToolUse` stages touched files, `checkpoint-commit` creates intentional diff-based commits, and `Stop` provides fallback autosave only when staged changes remain |
+| AD-011 | Root `SPEC.md` is project-scoped | Downstream projects should refine `SPEC.md` with the user and agents, while template-maintainer design rationale lives in `template-spec.md` |
+| AD-012 | Spec updates require an explicit human gesture | Agents read `SPEC.md` for feature work by default, but spec edits require `/refine-spec`, an explicit user request, or explicit approval of proposed spec changes |
 
 ---
 
@@ -101,6 +103,8 @@ Older milestone history lives in `context-history.md`. Use git history when you 
 | 2026-03-24 | Updated the session auto-commit hook to use summarized Conventional Commits at session end without timestamps or auto-push | Copilot |
 | 2026-03-25 | Implemented three-layer Git workflow automation with PostToolUse auto-stage hooks, a portable `checkpoint-commit` skill, and Stop-hook fallback autosave | Copilot |
 | 2026-03-26 | Split historical milestones into `context-history.md` so `CONTEXT.md` stays compact for agent context loading | Copilot |
+| 2026-03-26 | Replaced the root `SPEC.md` with a project-spec starter template and moved template-internal specification notes to `template-spec.md` | Copilot |
+| 2026-03-26 | Added `/refine-spec` and documented a human-gated spec sync workflow for Orchestrator and Implementer | Copilot |
 
 ---
 
