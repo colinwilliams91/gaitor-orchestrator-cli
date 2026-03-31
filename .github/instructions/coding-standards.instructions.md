@@ -70,7 +70,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `perf`, `ci`.
 
-## 9. TODO:
+## 9. Workflow Notes
 
-- **IDO default:** If enabled, all work starts as a GitHub Issue. See `.github/instructions/issue-driven-orchestration.instructions.md`.
-- **Label taxonomy:** `type:*`, `agent:*`, `status:*`, `priority:*`. Definitions in `.github/labels.yml`.
+- **IDO is opt-in:** Enforce issue-first workflow only when the human has explicitly enabled Issue-Driven Orchestration for the repository or current workstream. See `.github/instructions/issue-driven-orchestration.instructions.md`.
+- **IDO labels are optional:** If a repository adopts IDO routing labels, recommended namespaces are `type:*`, `agent:*`, `status:*`, and `priority:*`.
