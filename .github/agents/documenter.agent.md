@@ -40,6 +40,7 @@ workspace state.
 - **Recent Milestones** – compact list of the latest significant repository changes
 
 ## Historical Record
+
 - Store the milestone history older than the last 10 entries in `context-history.md`.
 - Never mirror the same milestone in both tables.
 - Use git history for exact diffs, authorship, and commit-level forensics.

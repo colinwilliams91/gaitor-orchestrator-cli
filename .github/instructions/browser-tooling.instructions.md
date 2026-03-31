@@ -32,7 +32,7 @@ Chrome DevTools or MCP-based diagnostics can augment a Tier 1 workflow when the 
 | Human asks a quick single-URL question in VS Code chat | Tier 2: `web` or `browser` tools |
 | Multi-harness / portable agent script | Tier 1 only — Tier 2 is Copilot-specific |
 
-**Example human prompts**
+## Example Human Prompts
 
 | Human intent | Session mode |
 |-------------|-------------|
@@ -87,7 +87,7 @@ If user implies that they want to observe and interact with the same browser ses
    # Human can F12 the same window at any time
    ```
 
-2.  To launch a new headed browser session that the human can also open DevTools on. (headless by default)
+2. To launch a new headed browser session that the human can also open DevTools on. (headless by default)
 
    ```bash
    # 1. Start agent automation (--headed flag provided because headless by default)

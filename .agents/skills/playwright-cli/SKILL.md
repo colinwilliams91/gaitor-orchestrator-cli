@@ -159,6 +159,7 @@ playwright-cli video-stop video.webm
 ```
 
 ## Open parameters
+
 ```bash
 # Use specific browser when creating session
 playwright-cli open --browser=chrome

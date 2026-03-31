@@ -20,11 +20,12 @@
 
 - An optional Issue Intake step may triage new issues, apply labels, and route work to downstream agents.
 
-_Agents share state exclusively through `CONTEXT.md` and the workspace file tree._
+*Agents share state exclusively through `CONTEXT.md` and the workspace file tree.*
 
 ---
 
 ## Project Overview
+
 This repository provides a scaffold for AI-driven development with multiple collaborating agents. Future scope is to port it to a CLI tool to generate structure with user configurable options.
 
 ### Goals
@@ -75,7 +76,7 @@ This repository provides a scaffold for AI-driven development with multiple coll
 
 ## Active Work
 
-_No tasks currently in flight. Update this section when work begins if IDO is not enabled. If IDO *is* enabled this should be managed via GitHub Issues and GitHub Projects._
+*No tasks currently in flight. Update this section when work begins if IDO is not enabled. If IDO *is* enabled this should be managed via GitHub Issues and GitHub Projects.*
 
 | Task | Agent | Status | Branch |
 |------|-------|--------|--------|
@@ -85,14 +86,14 @@ _No tasks currently in flight. Update this section when work begins if IDO is no
 
 ## Issue-Driven Orchestration (IDO) — Opt-in Workflow
 
-_Not enabled by default. Use only when the human explicitly opts in for the repository or the current workstream._
+*Not enabled by default. Use only when the human explicitly opts in for the repository or the current workstream.*
 
 When IDO is enabled, implementation work starts from a GitHub Issue with a clear
 problem statement and acceptance criteria. If the repository adopts routing labels,
 use them consistently, but label taxonomy is optional project policy rather than a
 global requirement of this template.
 
-```
+```text
 Issue filed → optional triage → agent dispatched → PR opened (Closes #N) →
 Reviewer consensus → human approval → merge → Documenter updates CONTEXT.md
 ```
@@ -111,7 +112,7 @@ If an IDO-enabled repository chooses to use an `agent:copilot` routing label,
 assign the issue to `copilot-swe-agent` via the GitHub web UI or the API. Pass the
 issue's acceptance criteria plus the following as `customInstructions`:
 
-```
+```text
 Repository context: .github/copilot-instructions.md and CONTEXT.md.
 Coding standards: .github/instructions/coding-standards.instructions.md.
 IDO rules: .github/instructions/issue-driven-orchestration.instructions.md.
@@ -188,4 +189,4 @@ Do not duplicate archived entries here. Use git history when you need exact diff
 
 ---
 
-_Last updated by: Copilot — agents should keep this current._
+*Last updated by: Copilot — agents should keep this current.*

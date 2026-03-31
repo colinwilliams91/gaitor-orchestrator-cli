@@ -83,7 +83,6 @@ User → Orchestrator → Implementer (Claude)
 
 ## Browser Tooling
 
-
 - Architecture, decision rules, and portability: `.github/instructions/browser-tooling.instructions.md`
 - Human ↔ agent session workflow: `.github/prompts/browser-workflow.prompt.md`
 - `playwright-cli` command reference: `.agents/skills/playwright-cli/SKILL.md`
