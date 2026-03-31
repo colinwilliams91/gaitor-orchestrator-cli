@@ -2,7 +2,7 @@
 name: Implementer
 description: >
   Writes, refactors, and debugs code based on instructions from the Orchestrator.
-  Preferred LLM: Claude. Language and framework agnostic.
+  Language and framework agnostic.
 tools:
   - execute/testFailure
   - execute/getTerminalOutput

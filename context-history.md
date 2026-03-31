@@ -7,6 +7,9 @@ Use git history when you need exact diffs, authorship, or commit-level details.
 
 ## Historical Milestones
 
+This file is the append-only archive for milestones moved out of the last 10 entries in `CONTEXT.md`'s Recent Milestones table.
+An entry should live in only one table at a time.
+
 | Date | Change | Agent |
 |------|--------|-------|
 | 2026-02-21 | Initial scaffold created | Copilot |

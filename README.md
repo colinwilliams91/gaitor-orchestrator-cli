@@ -36,7 +36,8 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
 │   ├── documenter.agent.md     – keeps CONTEXT.md current
 │   └── ralph.agent.md          – RALPH loop driver
 ├── instructions/         # Coding standards (.instructions.md)
-│   └── coding-standards.instructions.md
+│   ├── coding-standards.instructions.md
+│   └── browser-tooling.instructions.md  – two-tier browser tool architecture
 ├── hooks/                # Workspace hook files and supporting scripts
 │   ├── session-auto-commit.json
 │   └── session-auto-commit/   – auto-stage + fallback autosave scripts
@@ -45,13 +46,15 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
 ├── prompts/              # Reusable task prompts (.prompt.md)
 │   ├── task-template.prompt.md
 │   ├── ralph-loop.prompt.md
-│   └── refine-spec.prompt.md
+│   ├── refine-spec.prompt.md
+│   └── browser-workflow.prompt.md  – human-AI browser collaboration template
 ├── scripts/              # Utility/maintenance scripts
 │   └── sync-context.sh   – reminds Documenter to refresh CONTEXT.md
 └── copilot-instructions.md  – master workspace instructions for Copilot
 .agents/
 └── skills/               # Shared capability modules for multi-harness workflows
-   └── checkpoint-commit/     – diff-based commit checkpoint slash command
+   ├── checkpoint-commit/     – diff-based commit checkpoint slash command
+   └── playwright-cli/        – browser automation CLI (multi-harness)
 SPEC.md                      # Project-scoped specification draft for the current project
 template-spec.md             # Internal specification for maintaining this template itself
 CONTEXT.md                   # Centralized agent-alignment document
@@ -75,6 +78,18 @@ User → Orchestrator → Implementer (Claude)
 - **OpenAI** performs adversarial review until consensus.
 - **RALPH** (Reflect → Assess → Learn → Plan → Hypothesize) drives each iteration.
 - **Documenter** keeps `CONTEXT.md` current so all agents stay aligned.
+
+---
+
+## Browser Tooling
+
+- Architecture, decision rules, and portability: `.github/instructions/browser-tooling.instructions.md`
+- Human ↔ agent session workflow: `.github/prompts/browser-workflow.prompt.md`
+- `playwright-cli` command reference: `.agents/skills/playwright-cli/SKILL.md`
+
+Prefer a project-local `playwright-cli` installation and invoke it via `npx playwright-cli` when available. Use `playwright-cli open --extension <url>` when the human and agent should share a single, existing browser session. Use `playwright-cli open https://localhost:3000 --headed` to spawn a new browser instance. VS Code built-in browser tools remain a Copilot-only fallback and should be used only per the decision table.
+
+Use `/browser-workflow` in VS Code chat to start a structured browser session.
 
 ---
 

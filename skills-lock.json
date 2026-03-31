@@ -1,15 +1,15 @@
 {
   "version": 1,
   "skills": {
-    "agent-browser": {
-      "source": "vercel-labs/agent-browser",
-      "sourceType": "github",
-      "computedHash": "948f56ca9ffdef1f71b5333e9a3ffa9b47279a928498f660568648f504b5add8"
-    },
     "frontend-design": {
       "source": "anthropics/skills",
       "sourceType": "github",
       "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
+    },
+    "playwright-cli": {
+      "source": "microsoft/playwright-cli",
+      "sourceType": "github",
+      "computedHash": "a3592beb761a8b4e8b20dd7204808099adf1ff63f391b4ccb3d0659e9ea197d4"
     }
   }
 }

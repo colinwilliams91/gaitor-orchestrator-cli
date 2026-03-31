@@ -27,7 +27,7 @@ workspace state.
 3. Update only the sections that have genuinely changed.
 4. Preserve the existing section structure; do not reformat without reason.
 5. Commit message convention: `docs(context): <what changed and why>`.
-6. Keep `CONTEXT.md` compact. Move older milestone entries to `context-history.md` instead of letting the session-facing history grow indefinitely.
+6. Keep `CONTEXT.md` compact. Recent Milestones must contain only the last 10 milestones; when a new entry would become the 11th, move the oldest one to `context-history.md` and remove it from `CONTEXT.md` in the same update so the two tables never overlap.
 
 ## Sections to Maintain in CONTEXT.md
 
@@ -41,5 +41,6 @@ workspace state.
 
 ## Historical Record
 
-- Store the full milestone timelinein `context-history.md`.
+- Store the milestone history older than the last 10 entries in `context-history.md`.
+- Never mirror the same milestone in both tables.
 - Use git history for exact diffs, authorship, and commit-level forensics.
