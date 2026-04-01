@@ -1,0 +1,22 @@
+{
+  "name": "ai-ddlc-template",
+  "version": "0.1.0",
+  "description": "Lightweight, language-agnostic scaffold for an AI-Driven Development Lifecycle using GitHub Copilot with multi-agent parallelisation.",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "install:tools": "npm install",
+    "browser": "playwright-cli",
+    "diagram": "mmdc"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "latest",
+    "@playwright/cli": "latest"
+  }
+}

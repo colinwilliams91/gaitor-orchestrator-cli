@@ -1,0 +1,38 @@
+{
+  "name": "gaitor-orchestrator-cli",
+  "version": "0.1.0",
+  "description": "CLI scaffolding tool for the AI-Driven Development Lifecycle (AI-DDLC) workspace",
+  "keywords": [
+    "ai",
+    "ddlc",
+    "scaffold",
+    "copilot",
+    "agents",
+    "cli",
+    "gaitor"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.js",
+  "bin": {
+    "gaitor": "./bin/create-gaitor.js",
+    "create-gaitor": "./bin/create-gaitor.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.3.2",
+    "commander": "^14.0.3"
+  },
+  "scripts": {
+    "test": "node --test src/**/*.test.js",
+    "start": "node bin/create-gaitor.js"
+  }
+}
