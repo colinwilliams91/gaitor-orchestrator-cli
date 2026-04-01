@@ -8,6 +8,10 @@
     "playwright-cli": {
       "source": "microsoft/playwright-cli",
       "sourceType": "github"
+    },
+    "mermaid-cli": {
+      "source": "mermaid-js/mermaid-cli",
+      "sourceType": "github"
     }
   }
 }

@@ -245,13 +245,13 @@ playwright-cli kill-all
 
 ## Installation
 
-Prefer a project-local installation and invoke it via `npx playwright-cli`:
+`@playwright/cli` is a devDependency of this project. After `npm install`, invoke it via `npx`:
 
 ```bash
 npx --no-install playwright-cli --version
 ```
 
-If the command is not available locally yet, install it in the project first:
+If working outside this project and the command is not yet available locally:
 
 ```bash
 npm install --save-dev @playwright/cli@latest
