@@ -53,6 +53,7 @@ Optimize across these dimensions:
 ### 2. Emotional Resonance
 
 Map to high-arousal emotions that drive action:
+
 - Awe ("this changes everything")
 - Anger (righteous, not toxic)
 - Anxiety (FOMO, urgency)
@@ -64,6 +65,7 @@ Avoid low-arousal states: sadness, contentment, boredom
 ### 3. Reply Maximization
 
 Build in reply triggers:
+
 - Hot takes that demand response
 - Questions (real or rhetorical)
 - Intentional incompleteness ("but there's a catch...")
@@ -73,19 +75,23 @@ Build in reply triggers:
 ### 4. Repost Psychology
 
 Make it identity-reinforcing:
+
 - "This is the kind of person I am"
 - Makes the sharer look smart/informed/funny
 - Tribal signaling without being exclusionary
 - Quotable standalone value
 
 ### 5. Dwell Time Optimization
+
 - Information density that rewards re-reading
 - Nested ideas that unfold
 - Formatting that guides the eye (line breaks, spacing)
 - Payoff that recontextualizes the hook
 
 ### 6. Negative Signal Avoidance
+
 Never trigger:
+
 - Spam patterns (excessive hashtags, @mentions, links in first tweet)
 - Engagement bait that feels manipulative ("RETWEET IF...")
 - Rage bait that makes people want to mute you
@@ -98,6 +104,7 @@ Provide:
 **ORIGINAL:** [their tweet idea]
 
 **ANALYSIS:**
+
 - Current predicted engagement drivers: [what works]
 - Current friction points: [what hurts it]
 - Emotional register: [current vs optimal]
@@ -115,6 +122,7 @@ Why it works: [brief explanation]
 **RECOMMENDED:** [which version + any hybrid suggestions]
 
 **POSTING STRATEGY:**
+
 - Best time framing: [if relevant]
 - Thread potential: [yes/no + why]
 - Media recommendation: [image/video/none + why]
