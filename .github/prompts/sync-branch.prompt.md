@@ -13,6 +13,7 @@ argument-hint: "<target-branch>"
    ```bash
    git rebase origin/${target:-main}
    ```
+
 4. Resolve any conflicts
 5. Force-with-lease push to update the PR:
 
