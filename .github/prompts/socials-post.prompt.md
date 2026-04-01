@@ -19,8 +19,10 @@ If no argument provided, ask the user for their tweet idea or topic.
 ## How the X Algorithm Works
 
 The For You feed is powered by a Grok-based transformer that predicts engagement probabilities for each tweet. Maximize the weighted score:
+
 - **Final Score = Σ (weight × P(action))**
 - **Positive signals (higher weights):**
+
   - P(like) — immediate resonance
   - P(reply) — conversation triggers
   - P(repost) — share-worthy content
@@ -29,7 +31,9 @@ The For You feed is powered by a Grok-based transformer that predicts engagement
   - P(dwell) — stops the scroll
   - P(share) — off-platform worthy
   - P(follow_author) — "I need more of this"
+
 - **Negative signals (hurt your score):**
+
   - P(not_interested) — boring, irrelevant
   - P(block_author) — annoying, spammy
   - P(mute_author) — too much, too often
