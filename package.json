@@ -1,7 +1,7 @@
 {
   "name": "ai-ddlc-template",
   "version": "0.1.0",
-  "description": "Lightweight, language-agnostic scaffold for an AI-Driven Development Lifecycle using GitHub Copilot with multi-agent parallelisation.",
+  "description": "Programmable, cost-aware LLM runtime for developer productivity workflows with multi-agent parallelization.",
   "private": true,
   "workspaces": [
     "packages/*"

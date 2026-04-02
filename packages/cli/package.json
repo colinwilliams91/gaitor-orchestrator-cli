@@ -1,15 +1,18 @@
 {
   "name": "gaitor-orchestrator-cli",
   "version": "0.1.0",
-  "description": "CLI scaffolding tool for the AI-Driven Development Lifecycle (AI-DDLC) workspace",
+  "description": "Harness agnostic CLI scaffolding tool for cost-aware AI-Driven Development Lifecycle (AI-DDLC) workspace and multi-agent parallelization.",
   "keywords": [
     "ai",
     "ddlc",
     "scaffold",
     "copilot",
     "agents",
+    "llm",
     "cli",
-    "gaitor"
+    "gaitor",
+    "sdlc",
+    "orchestrator"
   ],
   "license": "MIT",
   "type": "module",

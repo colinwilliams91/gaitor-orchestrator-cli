@@ -1,5 +1,7 @@
 # gaitor-orchestrator-cli
 
+![Gaitor Orchestrator](https://res.cloudinary.com/dbdyc4klu/image/upload/q_auto/f_auto/v1775120367/gaitor-orchestrator-00_yqu3wt.webp)
+
 > Scaffold a new **AI-Driven Development Lifecycle (AI-DDLC)** workspace in seconds.
 
 ## Quick start

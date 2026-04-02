@@ -8,16 +8,16 @@ import { input, checkbox } from '@inquirer/prompts';
 /** All available opt-in feature IDs and their display labels. */
 export const FEATURES = {
   agents: {
-    label: 'Agent personas (.github/agents/)',
+    label: 'Agent personae (.github/agents/)',
     description: 'Orchestrator, Implementer, Reviewer, Documenter, and RALPH agent definitions',
   },
   instructions: {
     label: 'Instruction files (.github/instructions/)',
-    description: 'Coding standards, IDO rules, and browser-tooling guidelines',
+    description: 'Coding standards, IDO rules, and dev tooling advertisement/guidelines',
   },
   prompts: {
     label: 'Prompt templates (.github/prompts/)',
-    description: 'RALPH loop, spec refinement, task template, and API security audit prompts',
+    description: 'Commands/prompts for spec refinement, task template, API security audit prompts, RALPH loop, summarize and compose socials.',
   },
   hooks: {
     label: 'Git hooks (.github/hooks/)',
@@ -33,7 +33,7 @@ export const FEATURES = {
   },
   skills: {
     label: 'Shared skills (.agents/skills/)',
-    description: 'Portable playwright-cli and checkpoint-commit skill modules',
+    description: 'Portable playwright-cli, mermaid-cli and checkpoint-commit skill modules',
   },
 };
 

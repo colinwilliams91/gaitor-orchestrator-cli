@@ -25,7 +25,7 @@ When IDO is enabled:
 - Start implementation work from a GitHub Issue with a problem statement and clear acceptance criteria.
 - Prefer `.github/ISSUE_TEMPLATE/new_ticket.yaml` when filing new work.
 - Link implementation PRs back to the issue with `Closes #N` or equivalent.
-- Keep human approval in the merge path.
+- Keep human approval in the merge path unless specifically overridden.
 - Update `CONTEXT.md` after meaningful workflow or architecture changes.
 
 Recommended flow for IDO-enabled work:
@@ -37,7 +37,7 @@ Issue filed -> triage -> agent assigned -> PR opened (Closes #N) -> review conse
 Current template support:
 
 - Present now: `.github/ISSUE_TEMPLATE/new_ticket.yaml`, `.github/pull_request_template.md`, `.github/prompts/ralph-loop.prompt.md`, `.github/hooks/ido-context-sync.json`, and this instructions file.
-- Not scaffolded yet: a dedicated `issue-intake.agent.md`, a `resolve-issue.prompt.md`, and a repository label manifest such as `.github/labels.yml`.
+- Not scaffolded yet: a dedicated `issue-intake.agent.md`, a `route-issue.prompt.md`, and a repository label manifest such as `.github/labels.yml`.
 
 Label conventions are optional project policy, not a global requirement of this template. If a repository adopts labels for IDO routing, recommended namespaces are `type:*`, `agent:*`, `status:*`, and `priority:*`.
 
