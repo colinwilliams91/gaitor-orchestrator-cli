@@ -36,7 +36,7 @@ Issue filed -> triage -> agent assigned -> PR opened (Closes #N) -> review conse
 
 Current template support:
 
-- Present now: `.github/ISSUE_TEMPLATE/new_ticket.yaml`, `.github/pull_request_template.md`, `.github/prompts/ralph-loop.prompt.md`, and this instructions file.
+- Present now: `.github/ISSUE_TEMPLATE/new_ticket.yaml`, `.github/pull_request_template.md`, `.github/prompts/ralph-loop.prompt.md`, `.github/hooks/ido-context-sync.json`, and this instructions file.
 - Not scaffolded yet: a dedicated `issue-intake.agent.md`, a `resolve-issue.prompt.md`, and a repository label manifest such as `.github/labels.yml`.
 
 Label conventions are optional project policy, not a global requirement of this template. If a repository adopts labels for IDO routing, recommended namespaces are `type:*`, `agent:*`, `status:*`, and `priority:*`.
