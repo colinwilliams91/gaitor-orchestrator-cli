@@ -1,0 +1,13 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "type": "command",
+        "windows": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command \"$root = (git rev-parse --show-toplevel 2>$null).Trim(); if ($LASTEXITCODE -eq 0 -and $root) { & (Join-Path $root '.github\\hooks\\ido-context-sync\\trigger-sync.ps1') }\"",
+        "linux": ".github/hooks/ido-context-sync/trigger-sync.sh",
+        "osx": ".github/hooks/ido-context-sync/trigger-sync.sh",
+        "timeout": 20
+      }
+    ]
+  }
+}

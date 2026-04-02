@@ -40,7 +40,9 @@ using GitHub Copilot in VSCode with multi-agent parallelisation.
 │   └── browser-tooling.instructions.md  – two-tier browser tool architecture
 ├── hooks/                # Workspace hook files and supporting scripts
 │   ├── session-auto-commit.json
-│   └── session-auto-commit/   – auto-stage + fallback autosave scripts
+│   ├── ido-context-sync.json
+│   ├── session-auto-commit/   – auto-stage + fallback autosave scripts
+│   └── ido-context-sync/      – prompts `sync-context.sh` for IDO milestones
 ├── plugins/              # Bundled plugin configs
 │   └── context7/         – Context7 MCP docs plugin
 ├── prompts/              # Reusable task prompts (.prompt.md)

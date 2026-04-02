@@ -71,6 +71,7 @@ This repository provides a scaffold for AI-driven development with multiple coll
 | AD-012 | Spec updates require an explicit human gesture | Agents read `SPEC.md` for feature work by default, but spec edits require `/refine-spec`, an explicit user request, or explicit approval of proposed spec changes |
 | AD-013 | Two-tier browser tooling: playwright-cli + VS Code built-ins (fallback) | `playwright-cli` is the portable browser automation layer across harnesses; harness-specific DevTools or MCP diagnostics may augment shared sessions when available; VS Code built-in browser tools remain Copilot-only fallback |
 | AD-014 | delete and remove references to: `browser-workflow.prompt.md`, `REFERENCE.md` artifact, `CHEAT_SHEET.md` and agent-browser skill | Replaced by the more robust and flexible `playwright-cli` workflow and consolidated README, SKILL and instruction files; see AD-013 for the new architecture |
+| AD-015 | Human-in-loop workflows may use a stop hook to prompt context synchronization | `.github/hooks/ido-context-sync.json` runs `.github/scripts/sync-context.sh` at session end so IDO milestone work can hand off a `CONTEXT.md` refresh to the Documenter agent without adding GitHub-side automation yet |
 
 ---
 
@@ -133,6 +134,7 @@ Optional future extensions: issue intake agent, routing prompt, and label manife
 | Path | Purpose |
 |------|---------|
 | `.github/agents/` | Agent persona definitions (`.agent.md`) |
+| `.github/hooks/` | Workspace hook registrations and supporting automation scripts |
 | `.github/instructions/` | Coding standards & best-practice rules (`.instructions.md`) |
 | `.github/prompts/` | Reusable task prompts (`.prompt.md`) |
 | `.github/plugins/` | Bundled plugin configurations |
@@ -183,6 +185,7 @@ Do not duplicate archived entries here. Use git history when you need exact diff
 
 | Date | Change | Agent |
 |------|--------|-------|
+| 2026-04-02 | Added an `ido-context-sync` workspace hook package that runs `.github/scripts/sync-context.sh` on session stop so human-in-loop and IDO workflows can prompt `CONTEXT.md` and milestone refreshes | Copilot |
 | 2026-04-01 | Clarified IDO as a human opt-in workflow, added the issue-driven instructions document, and aligned source-of-truth references with the assets that actually exist in the template | Copilot |
 | 2026-03-29 | Replaced `agent-browser` skill with `playwright-cli`; added `browser-tooling.instructions.md`, `browser-workflow.prompt.md`, and established the browser tooling architecture captured in AD-013 | Copilot |
 | 2026-03-31 | delete and remove references to: `browser-workflow.prompt.md`, `REFERENCE.md` artifact, `CHEAT_SHEET.md` and agent-browser skill | Replaced by the more robust and flexible `playwright-cli` workflow and consolidated README, SKILL and instruction files; see AD-013 for the new architecture |
