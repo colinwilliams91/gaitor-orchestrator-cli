@@ -1,0 +1,39 @@
+{
+  "release-type": "node",
+  "changelog-sections": [
+    {
+      "type": "feat",
+      "section": "Features"
+    },
+    {
+      "type": "fix",
+      "section": "Bug Fixes"
+    },
+    {
+      "type": "docs",
+      "section": "Documentation"
+    },
+    {
+      "type": "refactor",
+      "section": "Refactoring"
+    },
+    {
+      "type": "perf",
+      "section": "Performance"
+    },
+    {
+      "type": "test",
+      "section": "Tests"
+    }
+  ],
+  "packages": {
+    "packages/cli": {
+      "release-type": "node",
+      "package-name": "gaitor-orchestrator-cli",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": true,
+      "include-component-in-tag": false,
+      "release-as": "1.0.0"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs['packages/cli--release_created'] }}
+
+      - uses: actions/setup-node@v4
+        if: ${{ steps.release.outputs['packages/cli--release_created'] }}
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        if: ${{ steps.release.outputs['packages/cli--release_created'] }}
+        run: npm ci
+
+      - name: Run CLI tests
+        if: ${{ steps.release.outputs['packages/cli--release_created'] }}
+        run: npm test --workspace=packages/cli
+
+      - name: Publish CLI package
+        if: ${{ steps.release.outputs['packages/cli--release_created'] }}
+        run: npm publish ./packages/cli --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

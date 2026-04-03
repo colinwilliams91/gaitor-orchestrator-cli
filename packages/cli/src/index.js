@@ -9,6 +9,7 @@
 import { resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 import { Command } from 'commander';
+import packageJson from '../package.json' with { type: 'json' };
 import { askProjectName, askFeatures, FEATURES } from './prompts.js';
 import { scaffold } from './scaffold.js';
 
@@ -17,7 +18,7 @@ const program = new Command();
 program
   .name('gaitor')
   .description('Scaffold a new AI-Driven Development Lifecycle (AI-DDLC) workspace in seconds.')
-  .version('0.1.0')
+  .version(packageJson.version)
   .argument('[project-name]', 'Name of the project directory to create')
   .option('-y, --yes', 'Skip interactive prompts and accept all defaults', false)
   .option('--no-agents', 'Exclude agent persona files')
@@ -28,13 +29,15 @@ program
   .option('--no-tools', 'Exclude local dev-tools package.json')
   .option('--no-skills', 'Exclude shared skill modules')
   .action(async (projectNameArg, opts) => {
-    console.log(`      ::::::::      :::     ::::::::::: ::::::::::: ::::::::  :::::::::
+    console.log(`
+      ::::::::      :::     ::::::::::: ::::::::::: ::::::::  :::::::::
     :+:    :+:   :+: :+:       :+:         :+:    :+:    :+: :+:    :+:
    +:+         +:+   +:+      +:+         +:+    +:+    +:+ +:+    +:+
   :#:        +#++:++#++:     +#+         +#+    +#+    +:+ +#++:++#:
  +#+  +:#+# +#+     +#+     +#+         +#+    +#+    +#+ +#+    +#+
 #+#    #+# #+#     #+#     #+#         #+#    #+#    #+# #+#    #+#
-########  ###     ### ###########     ###     ########  ###    ###      `);
+########  ###     ### ###########     ###     ########  ###    ###
+`);
     console.log('\n🐊🤖  gaitor-orchestrator-cli\n');
 
     // Resolve project name

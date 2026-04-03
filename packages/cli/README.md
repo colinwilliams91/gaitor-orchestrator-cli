@@ -1,6 +1,8 @@
 # gaitor-orchestrator-cli
 
-![Gaitor Orchestrator](https://res.cloudinary.com/dbdyc4klu/image/upload/q_auto/f_auto/v1775120367/gaitor-orchestrator-00_yqu3wt.webp)
+<p align="center">
+  <img src="https://res.cloudinary.com/dbdyc4klu/image/upload/c_scale,w_400/v1775255978/gaitor-orchestrator-00_r6llds_c_pad_w_500_h_500_ar_1_1_1_jpd0up.webp" alt="Gaitor Orchestrator"/>
+</p>
 
 > Scaffold a new **AI-Driven Development Lifecycle (AI-DDLC)** workspace in seconds.
 
@@ -12,7 +14,13 @@ npx gaitor-orchestrator-cli my-project
 
 # Skip prompts and include all features
 npx gaitor-orchestrator-cli my-project --yes
+
+# Or install globally
+npm install -g gaitor-orchestrator-cli
+gaitor my-project
 ```
+
+The source for the published package lives in `packages/cli` inside the `gaitor-orchestrator-cli` repository.
 
 ## Usage
 
