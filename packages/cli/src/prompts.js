@@ -73,7 +73,7 @@ export async function askFeatures() {
   }));
 
   return checkbox({
-    message: 'Select features to include (space to toggle, enter to confirm):',
+    message: '🐊🤖 Select features to include (space to toggle, enter to confirm):',
     choices,
     instructions: '\n  <space> toggle  <a> toggle all  <i> invert  <enter> confirm',
   });

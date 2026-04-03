@@ -37,7 +37,7 @@ program
     const targetDir = resolve(process.cwd(), projectName);
 
     if (existsSync(targetDir)) {
-      console.error(`\n❌  Directory "${projectName}" already exists. Choose a different name or remove it first.\n`);
+      console.error(`\n❌💀  Directory "${projectName}" already exists. Choose a different name or remove it first.\n`);
       process.exit(1);
     }
 
@@ -69,23 +69,23 @@ program
     }
 
     // Scaffold the project
-    console.log(`\n📂  Creating "${projectName}"…\n`);
+    console.log(`\n🐊📂  Creating "${projectName}"…\n`);
     try {
       await scaffold({ projectName, targetDir, features });
     } catch (err) {
-      console.error(`\n❌  Scaffolding failed: ${err.message}\n`);
+      console.error(`\n❌💀  Scaffolding failed: ${err.message}\n`);
       process.exit(1);
     }
 
     // Success message
-    console.log(`✅  Done! Your workspace is ready at ./${projectName}\n`);
+    console.log(`🐊🤖  Done! Your workspace is ready at ./${projectName}\n`);
     console.log('Next steps:\n');
     console.log(`  cd ${projectName}`);
     if (features.includes('tools')) {
       console.log('  npm install       # install local dev-tools');
     }
     console.log('  # Open in your editor and read CONTEXT.md to get started\n');
-    console.log('Happy building! 🚀\n');
+    console.log('Gaitor done! 🐊🥀\n');
   });
 
 program.parse(process.argv);

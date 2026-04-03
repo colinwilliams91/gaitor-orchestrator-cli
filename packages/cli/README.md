@@ -57,10 +57,10 @@ Options:
 | `--agents` (default on) | `.github/agents/` — Orchestrator, Implementer, Reviewer, Documenter, and RALPH agent definitions |
 | `--instructions` (default on) | `.github/instructions/` — Coding standards, IDO rules, and browser-tooling guidelines |
 | `--prompts` (default on) | `.github/prompts/` — RALPH loop, spec refinement, task template, and API security audit prompts |
-| `--hooks` (default on) | `.github/hooks/` — Session auto-commit hooks for PostToolUse and Stop events |
+| `--hooks` (default on) | `.github/hooks/` — Session auto-commit and ido-context-sync hooks for PostToolUse and/or Stop events |
 | `--ido` (default on) | `.github/ISSUE_TEMPLATE/` and `.github/pull_request_template.md` for IDO-enabled repositories |
 | `--tools` (default on) | Root `package.json` with `@playwright/cli` and `@mermaid-js/mermaid-cli` devDependencies |
-| `--skills` (default on) | `.agents/skills/` — Portable `playwright-cli` and `checkpoint-commit` skill modules |
+| `--skills` (default on) | `.agents/skills/` — Portable `playwright-cli`, `mermaid-cli`, `frontend-design` and `checkpoint-commit` skill modules |
 
 ## Examples
 
@@ -85,4 +85,4 @@ npm install
 
 ## License
 
-MIT
+GNU AGPL
