@@ -74,6 +74,7 @@ The CLI source lives in `packages/cli/`. The template files it scaffolds live in
 | AD-013 | Two-tier browser tooling: playwright-cli + VS Code built-ins (fallback) | `playwright-cli` is the portable browser automation layer across harnesses; harness-specific DevTools or MCP diagnostics may augment shared sessions when available; VS Code built-in browser tools remain Copilot-only fallback |
 | AD-014 | delete and remove references to: `browser-workflow.prompt.md`, `REFERENCE.md` artifact, `CHEAT_SHEET.md` and agent-browser skill | Replaced by the more robust and flexible `playwright-cli` workflow and consolidated README, SKILL and instruction files; see AD-013 for the new architecture |
 | AD-015 | Human-in-loop workflows may use a stop hook to prompt context synchronization | `.github/hooks/ido-context-sync.json` runs `.github/scripts/sync-context.sh` at session end so IDO milestone work can hand off a `CONTEXT.md` refresh to the Documenter agent without adding GitHub-side automation yet |
+| AD-016 | `packages/cli` is the only releaseable component and is published via release-please manifest automation | The repository root stays private for workspace orchestration and docs, while release-please versions `packages/cli`, generates `packages/cli/CHANGELOG.md`, creates GitHub releases, and drives npm publication from the subdirectory package |
 
 ---
 
@@ -189,6 +190,7 @@ Do not duplicate archived entries here. Use git history when you need exact diff
 
 | Date | Change | Agent |
 |------|--------|-------|
+| 2026-04-04 | Added subdirectory package release automation for `packages/cli`, including release-please manifest config, npm publish workflow, publish-facing package metadata, and dynamic runtime versioning for the initial `v1.0.0` release path | Copilot |
 | 2026-04-02 | Added an `ido-context-sync` workspace hook package that runs `.github/scripts/sync-context.sh` on session stop so human-in-loop and IDO workflows can prompt `CONTEXT.md` and milestone refreshes | Copilot |
 | 2026-04-01 | Implemented `gaitor-orchestrator-cli` v0.1.0 in `packages/cli/` — interactive CLI scaffolding tool with opt-in features for agents, instructions, prompts, hooks, IDO, tools, and skills | Copilot |
 | 2026-04-01 | Clarified IDO as a human opt-in workflow, added the issue-driven instructions document, and aligned source-of-truth references with the assets that actually exist in the template | Copilot |

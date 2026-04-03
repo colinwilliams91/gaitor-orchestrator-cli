@@ -1,6 +1,6 @@
 # Project Specification — gaitor-orchestrator-cli
 
-Status: In Progress — v0.1.0 CLI scaffolding implemented
+Status: In Progress — npm release automation and initial v1.0.0 packaging underway
 
 Purpose: Define the product, feature, and delivery requirements for the `gaitor-orchestrator-cli` tool.
 
@@ -75,7 +75,6 @@ Developers who want to use the AI-DDLC template must manually clone or copy the 
 
 ### 4.2 Out Of Scope
 
-- Publishing to npm registry (deferred to a future release).
 - Remote template sources / plugins.
 - Monorepo / workspace sub-directory scaffolding.
 
@@ -111,6 +110,7 @@ Developers who want to use the AI-DDLC template must manually clone or copy the 
 ## 8. Success Criteria
 
 - `npx gaitor-orchestrator-cli my-app --yes` creates a complete workspace in `./my-app/`.
+- `npx gaitor-orchestrator-cli --version` returns the published package version.
 - `node packages/cli/bin/create-gaitor.js --help` prints the usage summary.
 - All scaffolded files contain the correct project name (no `{{PROJECT_NAME}}` literals).
 - Existing directory triggers a clear error message and non-zero exit code.
@@ -123,11 +123,11 @@ Developers who want to use the AI-DDLC template must manually clone or copy the 
 - Key requirements: FR-001 through FR-008, NFR-001.
 - Done when: `--help` works, `--yes` scaffolds all files correctly, minimal scaffold works.
 
-### Slice 2 — npm publish + README (future)
+### Slice 2 — npm publish + release automation (v1.0.0) 🚧
 
 - User-visible outcome: `npx gaitor-orchestrator-cli` works without cloning the repo.
-- Key requirements: Published to npm, `README.md` updated with install instructions.
-- Done when: `npm publish` succeeds; `npx gaitor-orchestrator-cli --version` works from any machine.
+- Key requirements: Package metadata finalized, `README.md` updated with install instructions, release-please creates changelog-driven release PRs, and GitHub Actions publishes `packages/cli` to npm.
+- Done when: merging a release PR on `main` produces `v1.0.0`, updates `packages/cli/CHANGELOG.md`, publishes the package to npm, and `npx gaitor-orchestrator-cli --version` works from any machine.
 
 ### Slice 3 — `mcp.local.json` template feature (future)
 
@@ -137,7 +137,7 @@ Developers who want to use the AI-DDLC template must manually clone or copy the 
 
 ## 10. Open Questions
 
-- `OQ-001` — Should the CLI be published to npm as `gaitor-orchestrator-cli` or as `create-gaitor` (allowing `npm create gaitor`)?
+- `OQ-001` — Resolved: publish the CLI to npm as `gaitor-orchestrator-cli`; keep `create-gaitor` as a bin alias.
 - `OQ-002` — Should `mcp.local.json` generation be added as an opt-in feature in Slice 3?
 - `OQ-003` — Should remote template sources (GitHub repos) be supported in a future slice?
 
@@ -151,4 +151,4 @@ Developers who want to use the AI-DDLC template must manually clone or copy the 
 
 ---
 
-_Updated by Copilot after v0.1.0 CLI implementation._
+_Updated by Copilot during npm release automation setup._
