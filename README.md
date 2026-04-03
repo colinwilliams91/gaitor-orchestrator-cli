@@ -1,11 +1,12 @@
 # ai-ddlc-template
 
 Lightweight, language-agnostic scaffold for an **AI-Driven Development Lifecycle (AI-DDLC)**
-using GitHub Copilot in VSCode with multi-agent parallelisation.
+using GitHub Copilot in VSCode with multi-agent parallelization.
 
 ---
 
 ## Quick Start
+***TODO: Quick Start is stale and refers to deprecated repo-template version. Needs to be completely refreshed to match the new CLI-based scaffold.***
 
 1. **Clone or use as template** – click *Use this template* on GitHub.
 2. **Open in VSCode** – Copilot will automatically pick up
@@ -89,9 +90,7 @@ User → Orchestrator → Implementer (Claude)
 - Human ↔ agent session workflow: `.github/prompts/browser-workflow.prompt.md`
 - `playwright-cli` command reference: `.agents/skills/playwright-cli/SKILL.md`
 
-Prefer a project-local `playwright-cli` installation and invoke it via `npx playwright-cli` when available. Use `playwright-cli open --extension <url>` when the human and agent should share a single, existing browser session. Use `playwright-cli open https://localhost:3000 --headed` to spawn a new browser instance. VS Code built-in browser tools remain a Copilot-only fallback and should be used only per the decision table.
-
-Use `/browser-workflow` in VS Code chat to start a structured browser session.
+Prefer a project-local `playwright-cli` installation and invoke it via `npx playwright-cli` when available. Use `playwright-cli open --extension <url>` when the human and agent should share a single, existing browser session. Use `playwright-cli open https://localhost:3000 --headed` to spawn a new browser instance. VS Code built-in browser tools remain a Copilot-only fallback and should be used only per the decision table in `.github\instructions\browser-tooling.instructions.md`.
 
 ---
 
