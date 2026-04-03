@@ -16,7 +16,7 @@ const program = new Command();
 
 program
   .name('gaitor')
-  .description('Scaffold a new AI-Driven Development Lifecycle (AI-DDLC) workspace')
+  .description('Scaffold a new AI-Driven Development Lifecycle (AI-DDLC) workspace in seconds.')
   .version('0.1.0')
   .argument('[project-name]', 'Name of the project directory to create')
   .option('-y, --yes', 'Skip interactive prompts and accept all defaults', false)
@@ -28,7 +28,14 @@ program
   .option('--no-tools', 'Exclude local dev-tools package.json')
   .option('--no-skills', 'Exclude shared skill modules')
   .action(async (projectNameArg, opts) => {
-    console.log('\n🤖  gaitor-orchestrator-cli\n');
+    console.log(`      ::::::::      :::     ::::::::::: ::::::::::: ::::::::  :::::::::
+    :+:    :+:   :+: :+:       :+:         :+:    :+:    :+: :+:    :+:
+   +:+         +:+   +:+      +:+         +:+    +:+    +:+ +:+    +:+
+  :#:        +#++:++#++:     +#+         +#+    +#+    +:+ +#++:++#:
+ +#+   +#+# +#+     +#+     +#+         +#+    +#+    +#+ +#+    +#+
+#+#    #+# #+#     #+#     #+#         #+#    #+#    #+# #+#    #+#
+########  ###     ### ###########     ###     ########  ###    ###      `);
+    console.log('\n🐊🤖  gaitor-orchestrator-cli\n');
 
     // Resolve project name
     const projectName = await askProjectName(projectNameArg);
@@ -82,10 +89,10 @@ program
     console.log('Next steps:\n');
     console.log(`  cd ${projectName}`);
     if (features.includes('tools')) {
-      console.log('  npm install       # install local dev-tools');
+      console.log('  npm install  # install local dev-tools');
     }
     console.log('  # Open in your editor and read CONTEXT.md to get started\n');
-    console.log('Gaitor done! 🐊🥀\n');
+    console.log('🐊🤖  Gaitor done! 🤠🥀\n');
   });
 
 program.parse(process.argv);
