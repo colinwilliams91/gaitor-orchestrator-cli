@@ -188,6 +188,11 @@ export async function scaffold({ projectName, targetDir, features }) {
   for (const harnessId of HARNESS_IDS) {
     if (!selectedFeatures.has(harnessId)) continue;
     for (const entry of HARNESS_FILE_MAP[harnessId]) {
+      const existingEntry = harnessEntries.get(entry.dest);
+      if (existingEntry && existingEntry.src !== entry.src) {
+        throw new Error(`Conflicting harness sources for ${entry.dest}: ${existingEntry.src} vs ${entry.src}`);
+      }
+
       // Duplicate destinations are expected for shared adapter files like AGENTS.md.
       harnessEntries.set(entry.dest, entry);
     }
