@@ -20,3 +20,4 @@ An entry should live in only one table at a time.
 | 2026-03-26 | Split `CONTEXT.md` history into compact Recent Milestones and a separate historical timeline file | Copilot |
 | 2026-03-26 | Replaced the root `SPEC.md` with a project-spec starter template and moved template-internal specification notes to `template-spec.md` | Copilot |
 | 2026-03-26 | Added `/refine-spec` and documented a human-gated spec sync workflow for Orchestrator and Implementer | Copilot |
+| 2026-04-05 | Deleted `template-spec.md` as it became redundant | Copilot |

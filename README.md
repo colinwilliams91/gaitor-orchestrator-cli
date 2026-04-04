@@ -26,7 +26,6 @@ packages/cli/             Publishable CLI package
 packages/cli/templates/   Files embedded into the scaffolded workspace
 CONTEXT.md                Shared project state for agents
 SPEC.md                   Product and delivery specification for the CLI
-template-spec.md          Template-maintainer design notes
 ```
 
 ## Development
