@@ -1,6 +1,6 @@
 {
   "name": "gaitor-orchestrator-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Harness-agnostic CLI scaffolding tool for cost-aware AI-Driven Development Lifecycle (AI-DDLC) workspace with multi-agent parallelization.",
   "keywords": [
     "ai",
