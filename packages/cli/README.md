@@ -24,6 +24,8 @@ The source for the published package lives in `packages/cli` inside the `gaitor-
 
 ## Usage
 
+Passing any `--no-*` feature or harness selection flag makes the CLI use flag-driven, non-interactive scaffolding for those selections.
+
 ```text
 Usage: gaitor [options] [project-name]
 

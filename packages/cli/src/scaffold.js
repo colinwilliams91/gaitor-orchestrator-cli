@@ -13,7 +13,8 @@ import { HARNESS_IDS } from './prompts.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TEMPLATES_DIR = resolve(__dirname, '../templates');
-const README_IMAGE = `<p align="center">
+export const README_IMAGE_MARKER = 'alt="Gaitor Orchestrator"';
+export const README_IMAGE = `<p align="center">
   <img src="https://res.cloudinary.com/dbdyc4klu/image/upload/c_scale,w_400/v1775255978/gaitor-orchestrator-00_r6llds_c_pad_w_500_h_500_ar_1_1_1_jpd0up.webp" alt="Gaitor Orchestrator"/>
 </p>`;
 
@@ -211,7 +212,7 @@ export async function scaffold({ projectName, targetDir, features }) {
   const readmePath = join(targetDir, 'README.md');
   if (existsSync(readmePath)) {
     const readmeContent = readFileSync(readmePath, 'utf8');
-    if (!readmeContent.includes(README_IMAGE)) {
+    if (!readmeContent.includes(README_IMAGE_MARKER)) {
       writeFileSync(readmePath, `${README_IMAGE}\n\n${readmeContent}`, 'utf8');
     }
   }

@@ -7,6 +7,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import packageJson from '../package.json' with { type: 'json' };
 import { hasSelectionFlagOverrides, resolveSelectedFeatures } from './prompts.js';
+import { README_IMAGE_MARKER } from './scaffold.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const cliPath = resolve(__dirname, '../bin/create-gaitor.js');
@@ -137,7 +138,7 @@ test('scaffolds README image and all harness files by default with --yes', () =>
     const projectDir = join(tempRoot, 'all-harnesses');
     const readme = readFileSync(join(projectDir, 'README.md'), 'utf8');
 
-    assert.match(readme, /<img src="https:\/\/res\.cloudinary\.com\/dbdyc4klu\/image\/upload\/c_scale,w_400\/v1775255978\/gaitor-orchestrator-00_r6llds_c_pad_w_500_h_500_ar_1_1_1_jpd0up\.webp"/);
+    assert.match(readme, new RegExp(README_IMAGE_MARKER));
     assert.equal(existsSync(join(projectDir, 'AGENTS.md')), true);
     assert.equal(existsSync(join(projectDir, 'CLAUDE.md')), true);
     assert.equal(existsSync(join(projectDir, '.cursorrules')), true);
