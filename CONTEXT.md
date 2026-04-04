@@ -75,6 +75,7 @@ The CLI source lives in `packages/cli/`. The template files it scaffolds live in
 | AD-014 | delete and remove references to: `browser-workflow.prompt.md`, `REFERENCE.md` artifact, `CHEAT_SHEET.md` and agent-browser skill | Replaced by the more robust and flexible `playwright-cli` workflow and consolidated README, SKILL and instruction files; see AD-013 for the new architecture |
 | AD-015 | Human-in-loop workflows may use a stop hook to prompt context synchronization | `.github/hooks/ido-context-sync.json` runs `.github/scripts/sync-context.sh` at session end so IDO milestone work can hand off a `CONTEXT.md` refresh to the Documenter agent without adding GitHub-side automation yet |
 | AD-016 | `packages/cli` is the only releaseable component and is published via release-please manifest automation | The repository root stays private for workspace orchestration and docs, while release-please versions `packages/cli`, generates `packages/cli/CHANGELOG.md`, creates GitHub releases, and drives npm publication from the subdirectory package |
+| AD-017 | `template-spec.md` is redundant and deprecated, therefore deleted | Downstream projects now use `packages\cli\templates\base\SPEC.md` while cli-maintainers design rationale lives in `SPEC.md` |
 
 ---
 
