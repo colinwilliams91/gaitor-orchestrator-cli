@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Changelog
 
 ## [1.0.0](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v0.1.0...v1.0.0) (2026-04-04)
