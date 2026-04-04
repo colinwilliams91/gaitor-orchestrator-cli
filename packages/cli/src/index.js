@@ -10,7 +10,7 @@ import { resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 import { Command } from 'commander';
 import packageJson from '../package.json' with { type: 'json' };
-import { askProjectName, askFeatures, FEATURES } from './prompts.js';
+import { askProjectName, askFeatures, hasSelectionFlagOverrides, resolveSelectedFeatures } from './prompts.js';
 import { scaffold } from './scaffold.js';
 
 const program = new Command();
@@ -28,6 +28,11 @@ program
   .option('--no-ido', 'Exclude Issue-Driven Orchestration files')
   .option('--no-tools', 'Exclude local dev-tools package.json')
   .option('--no-skills', 'Exclude shared skill modules')
+  .option('--no-harnesses', 'Exclude AGENTS.md, copilot instructions, CLAUDE.md, and .cursorrules')
+  .option('--no-copilot', 'Exclude GitHub Copilot harness files')
+  .option('--no-claude', 'Exclude Claude Code harness files')
+  .option('--no-codex', 'Exclude Codex harness files')
+  .option('--no-cursor', 'Exclude Cursor harness files')
   .action(async (projectNameArg, opts) => {
     console.log(`
       ::::::::      :::     ::::::::::: ::::::::::: ::::::::  :::::::::
@@ -53,29 +58,10 @@ program
 
     // Resolve feature selection
     let features;
-    if (opts.yes) {
-      features = Object.keys(FEATURES);
+    if (opts.yes || hasSelectionFlagOverrides(opts)) {
+      features = resolveSelectedFeatures(opts);
     } else {
-      // Pre-filter based on --no-* flags
-      const flagDefaults = {
-        agents: opts.agents,
-        instructions: opts.instructions,
-        prompts: opts.prompts,
-        hooks: opts.hooks,
-        ido: opts.ido,
-        tools: opts.tools,
-        skills: opts.skills,
-      };
-      const anyFlagSet = Object.values(flagDefaults).some((v) => v === false);
-      if (anyFlagSet) {
-        // Non-interactive mode: use flags to determine features
-        features = Object.entries(flagDefaults)
-          .filter(([, enabled]) => enabled !== false)
-          .map(([id]) => id);
-      } else {
-        // Fully interactive: ask the user
-        features = await askFeatures();
-      }
+      features = await askFeatures();
     }
 
     // Scaffold the project

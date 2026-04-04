@@ -35,7 +35,26 @@ export const FEATURES = {
     label: 'Shared skills (.agents/skills/)',
     description: 'Portable playwright-cli, mermaid-cli and checkpoint-commit skill modules',
   },
+  copilot: {
+    label: 'Copilot (github)',
+    description: 'GH Copilot harness support',
+  },
+  claude: {
+    label: 'Claude Code (anthropic)',
+    description: 'Anthropic harness support',
+  },
+  codex: {
+    label: 'Codex (openai)',
+    description: 'OpenAI harness support',
+  },
+  cursor: {
+    label: 'Cursor (anysphere)',
+    description: 'Cursor code editor and harness support',
+  },
 };
+
+export const FEATURE_IDS = ['agents', 'instructions', 'prompts', 'hooks', 'ido', 'tools', 'skills'];
+export const HARNESS_IDS = ['copilot', 'claude', 'codex', 'cursor'];
 
 /**
  * Ask for the target project name.
@@ -67,7 +86,7 @@ export async function askProjectName(positional) {
  */
 export async function askFeatures() {
   const choices = Object.entries(FEATURES).map(([value, meta]) => ({
-    name: meta.label,
+    name: `${meta.label} — ${meta.description}`,
     value,
     checked: true,
   }));
@@ -75,6 +94,31 @@ export async function askFeatures() {
   return checkbox({
     message: '🐊🤖 Select features to include (space to toggle, enter to confirm):',
     choices,
-    instructions: '\n  <space> toggle  <a> toggle all  <i> invert  <enter> confirm',
+    instructions: '\n  <space> toggle  <a> toggle all  <enter> confirm',
   });
+}
+
+/**
+ * Resolve selected feature and harness IDs from Commander --no-* flags.
+ *
+ * @param {Record<string, boolean>} opts
+ * @returns {string[]}
+ */
+export function resolveSelectedFeatures(opts) {
+  const selectedFeatures = FEATURE_IDS.filter((featureId) => opts[featureId] !== false);
+  const selectedHarnesses = opts.harnesses === false
+    ? []
+    : HARNESS_IDS.filter((harnessId) => opts[harnessId] !== false);
+
+  return [...selectedFeatures, ...selectedHarnesses];
+}
+
+/**
+ * Determine whether any --no-* selection flags were supplied.
+ *
+ * @param {Record<string, boolean>} opts
+ * @returns {boolean}
+ */
+export function hasSelectionFlagOverrides(opts) {
+  return ['harnesses', ...FEATURE_IDS, ...HARNESS_IDS].some((optionId) => opts[optionId] === false);
 }

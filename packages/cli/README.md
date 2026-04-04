@@ -42,6 +42,11 @@ Options:
   --no-ido                 Exclude Issue-Driven Orchestration files
   --no-tools               Exclude local dev-tools package.json
   --no-skills              Exclude shared skill modules
+  --no-harnesses           Exclude AGENTS.md, copilot instructions, CLAUDE.md, and .cursorrules
+  --no-copilot             Exclude GitHub Copilot harness files
+  --no-claude              Exclude Claude Code harness files
+  --no-codex               Exclude Codex harness files
+  --no-cursor              Exclude Cursor harness files
   -h, --help               display help for command
 ```
 
@@ -51,20 +56,23 @@ Options:
 
 | File | Purpose |
 |------|---------|
+| `README.md` | Default project landing page with the Gaitor Orchestrator image header |
 | `CONTEXT.md` | Single source of truth for all agents |
 | `SPEC.md` | Project specification draft |
 | `.gitignore` | Standard gitignore with AI/LLM additions |
 
 ---
 
-**The following harness support files need to be considered in the scaffolding business logic:**
+### Harness support files
 
-| File | Purpose |
-|------|---------|
-| `AGENTS.md` | Adapter for non-Copilot harnesses |
-| `CLAUDE.md` | Adapter for Claude harnesses |
-| `.cursorrules` | Adapter for Cursor agent interactions |
-| `.github/copilot-instructions.md` | GitHub Copilot workspace instructions |
+| Harness flag | Files included |
+|-------------|----------------|
+| default (no harness flags) | `CONTEXT.md`, `AGENTS.md`, `.github/copilot-instructions.md`, `CLAUDE.md`, `.cursorrules` |
+| `--no-harnesses` | `CONTEXT.md` only |
+| `--no-copilot` | Omits `.github/copilot-instructions.md` |
+| `--no-claude` | Omits `CLAUDE.md` |
+| `--no-codex` | Omits Codex-only harness support; shared `AGENTS.md` remains if another harness still needs it |
+| `--no-cursor` | Omits `.cursorrules` |
 
 ### Opt-in features
 
@@ -82,10 +90,13 @@ Options:
 
 ```bash
 # Minimal workspace — only core files
-npx gaitor-orchestrator-cli my-project --no-agents --no-instructions --no-prompts --no-hooks --no-ido --no-tools --no-skills
+npx gaitor-orchestrator-cli my-project --no-agents --no-instructions --no-prompts --no-hooks --no-ido --no-tools --no-skills --no-harnesses
 
 # Workspace without IDO or local tools
 npx gaitor-orchestrator-cli my-project --no-ido --no-tools
+
+# Workspace with Claude and Codex harness support only
+npx gaitor-orchestrator-cli my-project --no-copilot --no-cursor
 ```
 
 ## After scaffolding

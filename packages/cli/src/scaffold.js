@@ -12,6 +12,9 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TEMPLATES_DIR = resolve(__dirname, '../templates');
+const README_IMAGE = `<p align="center">
+  <img src="https://res.cloudinary.com/dbdyc4klu/image/upload/c_scale,w_400/v1775255978/gaitor-orchestrator-00_r6llds_c_pad_w_500_h_500_ar_1_1_1_jpd0up.webp" alt="Gaitor Orchestrator"/>
+</p>`;
 
 /**
  * Map from feature ID to the template sub-directory(ies) to include.
@@ -45,6 +48,31 @@ const FEATURE_MAP = {
   ],
   skills: [
     { src: 'skills', dest: '.agents/skills' },
+  ],
+};
+
+const BASE_TEMPLATE_ENTRIES = [
+  { src: 'base/CONTEXT.md', dest: 'CONTEXT.md' },
+  { src: 'base/SPEC.md', dest: 'SPEC.md' },
+  { src: 'base/_gitignore', dest: '.gitignore' },
+  { src: 'base/README.md', dest: 'README.md' },
+];
+
+const HARNESS_FILE_MAP = {
+  copilot: [
+    { src: 'base/AGENTS.md', dest: 'AGENTS.md' },
+    { src: 'base/_github/copilot-instructions.md', dest: '.github/copilot-instructions.md' },
+  ],
+  claude: [
+    { src: 'base/AGENTS.md', dest: 'AGENTS.md' },
+    { src: 'base/CLAUDE.md', dest: 'CLAUDE.md' },
+  ],
+  codex: [
+    { src: 'base/AGENTS.md', dest: 'AGENTS.md' },
+  ],
+  cursor: [
+    { src: 'base/AGENTS.md', dest: 'AGENTS.md' },
+    { src: 'base/.cursorrules', dest: '.cursorrules' },
   ],
 };
 
@@ -148,18 +176,42 @@ function copyItem(srcPath, destRoot, relDest, projectName) {
  * @param {string[]} options.features     - Array of selected feature IDs.
  */
 export async function scaffold({ projectName, targetDir, features }) {
+  const selectedFeatures = new Set(features);
+
   // 1. Create the target directory
   mkdirSync(targetDir, { recursive: true });
 
   // 2. Copy base files (always included)
-  copyDirectory(join(TEMPLATES_DIR, 'base'), targetDir, projectName);
+  for (const { src, dest } of BASE_TEMPLATE_ENTRIES) {
+    copyItem(src, targetDir, dest, projectName);
+  }
+
+  const harnessEntries = new Map();
+  for (const harnessId of ['copilot', 'claude', 'codex', 'cursor']) {
+    if (!selectedFeatures.has(harnessId)) continue;
+    for (const entry of HARNESS_FILE_MAP[harnessId]) {
+      harnessEntries.set(entry.dest, entry);
+    }
+  }
+
+  for (const { src, dest } of harnessEntries.values()) {
+    copyItem(src, targetDir, dest, projectName);
+  }
 
   // 3. Copy opt-in feature files
-  for (const featureId of features) {
+  for (const featureId of selectedFeatures) {
     const entries = FEATURE_MAP[featureId];
     if (!entries) continue;
     for (const { src, dest } of entries) {
       copyItem(src, targetDir, dest, projectName);
+    }
+  }
+
+  const readmePath = join(targetDir, 'README.md');
+  if (existsSync(readmePath)) {
+    const readmeContent = readFileSync(readmePath, 'utf8');
+    if (!readmeContent.includes(README_IMAGE)) {
+      writeFileSync(readmePath, `${README_IMAGE}\n\n${readmeContent}`, 'utf8');
     }
   }
 }
