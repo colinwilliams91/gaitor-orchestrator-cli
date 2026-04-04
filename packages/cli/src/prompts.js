@@ -86,7 +86,7 @@ export async function askProjectName(positional) {
  */
 export async function askFeatures() {
   const choices = Object.entries(FEATURES).map(([value, meta]) => ({
-    name: `${meta.label} - ${meta.description}`,
+    name: meta.label,
     value,
     checked: true,
   }));
