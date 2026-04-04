@@ -9,6 +9,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync, statSync, cpSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { HARNESS_IDS } from './prompts.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TEMPLATES_DIR = resolve(__dirname, '../templates');
@@ -187,7 +188,7 @@ export async function scaffold({ projectName, targetDir, features }) {
   }
 
   const harnessEntries = new Map();
-  for (const harnessId of ['copilot', 'claude', 'codex', 'cursor']) {
+  for (const harnessId of HARNESS_IDS) {
     if (!selectedFeatures.has(harnessId)) continue;
     for (const entry of HARNESS_FILE_MAP[harnessId]) {
       harnessEntries.set(entry.dest, entry);
