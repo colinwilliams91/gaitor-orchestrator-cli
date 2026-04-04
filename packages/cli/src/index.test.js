@@ -25,3 +25,12 @@ test('prints the package version', () => {
   assert.equal(result.status, 0);
   assert.equal(result.stdout.trim(), packageJson.version);
 });
+
+test('--help includes --no-mcp option', () => {
+  const result = spawnSync(process.execPath, [cliPath, '--help'], {
+    encoding: 'utf8',
+  });
+
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /--no-mcp/);
+});

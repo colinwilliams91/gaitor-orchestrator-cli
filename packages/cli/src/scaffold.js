@@ -46,6 +46,9 @@ const FEATURE_MAP = {
   skills: [
     { src: 'skills', dest: '.agents/skills' },
   ],
+  mcp: [
+    { src: 'mcp/mcp.local.json', dest: 'mcp.local.json' },
+  ],
 };
 
 /**
