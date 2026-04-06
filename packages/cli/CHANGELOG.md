@@ -1,6 +1,24 @@
 <!-- markdownlint-disable -->
 # Changelog
 
+## [1.1.0](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v1.0.1...v1.1.0) (2026-04-06)
+
+
+### Features
+
+* **cli:** add --no-mcp option and mcp.local.json scaffold template ([716e220](https://github.com/colinwilliams91/gaitor-orchestrator-cli/commit/716e220814c5857ac0025686bf25d54d0e2b2862))
+* **cli:** add --no-mcp option and mcp.local.json template ([aaf7724](https://github.com/colinwilliams91/gaitor-orchestrator-cli/commit/aaf7724836a26bf9af7d86f03086de308f37301e))
+
+
+### Bug Fixes
+
+* **cli:** correct mcp.local.json template with proper server configs ([fdadd63](https://github.com/colinwilliams91/gaitor-orchestrator-cli/commit/fdadd63b143f25f5a1d8672da8cd74251816c038))
+
+
+### Documentation
+
+* **mcp:** add CLI README info for mcp config scaffold migration ([097257e](https://github.com/colinwilliams91/gaitor-orchestrator-cli/commit/097257e3c4f713b75f08f8f786bfba4ae14a5e28))
+
 ## [1.0.1](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v1.0.0...v1.0.1) (2026-04-04)
 
 
