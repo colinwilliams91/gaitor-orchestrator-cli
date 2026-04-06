@@ -42,6 +42,7 @@ Options:
   --no-ido                 Exclude Issue-Driven Orchestration files
   --no-tools               Exclude local dev-tools package.json
   --no-skills              Exclude shared skill modules
+  --no-mcp                 Exclude mcp.local.json plug-n-play config
   -h, --help               display help for command
 ```
 
@@ -77,12 +78,13 @@ Options:
 | `--ido` (default on) | `.github/ISSUE_TEMPLATE/` and `.github/pull_request_template.md` for IDO-enabled repositories |
 | `--tools` (default on) | Root `package.json` with `@playwright/cli` and `@mermaid-js/mermaid-cli` devDependencies |
 | `--skills` (default on) | `.agents/skills/` — Portable `playwright-cli`, `mermaid-cli`, `frontend-design` and `checkpoint-commit` skill modules |
+| `--mcp` (default on) | Root `mcp.local.json` with plug-n-play config for all scaffolded features (rename to ~\\Users\\<username>\\mcp-config.json OR C:\\Users\\<username>\\AppData\\Roaming\\Code\\User\\mcp.json or intra-project path) |
 
 ## Examples
 
 ```bash
 # Minimal workspace — only core files
-npx gaitor-orchestrator-cli my-project --no-agents --no-instructions --no-prompts --no-hooks --no-ido --no-tools --no-skills
+npx gaitor-orchestrator-cli my-project --no-agents --no-instructions --no-prompts --no-hooks --no-ido --no-tools --no-skills --no-mcp
 
 # Workspace without IDO or local tools
 npx gaitor-orchestrator-cli my-project --no-ido --no-tools
