@@ -35,6 +35,10 @@ export const FEATURES = {
     label: 'Shared skills (.agents/skills/)',
     description: 'Portable playwright-cli, mermaid-cli and checkpoint-commit skill modules',
   },
+  mcp: {
+    label: 'MCP server config (mcp.local.json)',
+    description: 'Local MCP server configuration template for Context7, markitdown, and Penpot',
+  },
 };
 
 /**

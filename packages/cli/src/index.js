@@ -28,6 +28,7 @@ program
   .option('--no-ido', 'Exclude Issue-Driven Orchestration files')
   .option('--no-tools', 'Exclude local dev-tools package.json')
   .option('--no-skills', 'Exclude shared skill modules')
+  .option('--no-mcp', 'Exclude MCP server config file (mcp.local.json)')
   .action(async (projectNameArg, opts) => {
     console.log(`
       ::::::::      :::     ::::::::::: ::::::::::: ::::::::  :::::::::
@@ -65,6 +66,7 @@ program
         ido: opts.ido,
         tools: opts.tools,
         skills: opts.skills,
+        mcp: opts.mcp,
       };
       const anyFlagSet = Object.values(flagDefaults).some((v) => v === false);
       if (anyFlagSet) {

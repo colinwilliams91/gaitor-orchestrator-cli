@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp/oauth",
+      "headers": {
+        "CONTEXT7_API_KEY": "${env:CONTEXT7_API_KEY}"
+      }
+    },
+    "microsoft/markitdown": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "markitdown-mcp@0.0.1a4"
+      ],
+      "gallery": "https://api.mcp.github.com",
+      "version": "1.0.0"
+    },
+    "penpot": {
+      "type": "sse",
+      "url": "http://localhost:4401/sse"
+    }
+  },
+  "inputs": [
+    {
+      "id": "CONTEXT7_API_KEY",
+      "type": "promptString",
+      "description": "API key for Context7 authentication",
+      "password": true
+    }
+  ]
+}

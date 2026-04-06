@@ -168,6 +168,8 @@ ai-cache/
 .ai.local.*
 .copilot.local.*
 mcp.local.json
+# Allow the scaffold template itself to be tracked
+!packages/cli/templates/mcp/mcp.local.json
 template-spec.md
 
 # API keys / credentials that may appear near AI config
