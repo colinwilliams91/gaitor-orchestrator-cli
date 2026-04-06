@@ -1,0 +1,29 @@
+# OpenTelemetry environment variables for {{PROJECT_NAME}}-app-host
+#
+# When running inside .NET Aspire these are injected automatically.
+# Copy this file to .env and edit for standalone local development.
+#
+# Usage:
+#   cp .env.example .env
+#   npm run dev
+
+# Base URL of the OTLP collector.
+# Aspire Dashboard default: http://localhost:18889
+# Local collector default:  http://localhost:4318
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
+
+# Service name shown in the Aspire Dashboard and traces.
+OTEL_SERVICE_NAME={{PROJECT_NAME}}-app-host
+
+# Additional key=value resource attributes (comma-separated).
+# Example: deployment.environment=development,team=platform
+OTEL_RESOURCE_ATTRIBUTES=deployment.environment=development
+
+# Trace sampler. Options: always_on | always_off | parentbased_always_on | traceidratio
+OTEL_TRACES_SAMPLER=parentbased_always_on
+
+# TCP port this service binds to.
+PORT=3000
+
+# Aspire Dashboard OTLP URL (informational — set by Aspire when orchestrated).
+# DOTNET_DASHBOARD_OTLP_ENDPOINT_URL=http://localhost:18889

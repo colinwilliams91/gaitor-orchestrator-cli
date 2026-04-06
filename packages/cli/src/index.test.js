@@ -34,3 +34,12 @@ test('--help includes --no-mcp option', () => {
   assert.equal(result.status, 0);
   assert.match(result.stdout, /--no-mcp/);
 });
+
+test('--help includes --no-aspire option', () => {
+  const result = spawnSync(process.execPath, [cliPath, '--help'], {
+    encoding: 'utf8',
+  });
+
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /--no-aspire/);
+});

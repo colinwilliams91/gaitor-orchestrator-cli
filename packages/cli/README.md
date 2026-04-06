@@ -43,6 +43,7 @@ Options:
   --no-tools               Exclude local dev-tools package.json
   --no-skills              Exclude shared skill modules
   --no-mcp                 Exclude mcp.local.json plug-n-play config
+  --no-aspire              Exclude Aspire AppHost + OTEL scaffold (app-host/)
   -h, --help               display help for command
 ```
 
@@ -79,12 +80,13 @@ Options:
 | `--tools` (default on) | Root `package.json` with `@playwright/cli` and `@mermaid-js/mermaid-cli` devDependencies |
 | `--skills` (default on) | `.agents/skills/` — Portable `playwright-cli`, `mermaid-cli`, `frontend-design` and `checkpoint-commit` skill modules |
 | `--mcp` (default on) | Root `mcp.local.json` with plug-n-play config for all scaffolded features (rename to ~\\Users\\<username>\\mcp-config.json OR C:\\Users\\<username>\\AppData\\Roaming\\Code\\User\\mcp.json or intra-project path) |
+| `--aspire` (default on) | `app-host/` — TypeScript Node.js service pre-wired for .NET Aspire orchestration with OpenTelemetry traces, metrics, and logs exported to the Aspire Dashboard |
 
 ## Examples
 
 ```bash
 # Minimal workspace — only core files
-npx gaitor-orchestrator-cli my-project --no-agents --no-instructions --no-prompts --no-hooks --no-ido --no-tools --no-skills --no-mcp
+npx gaitor-orchestrator-cli my-project --no-agents --no-instructions --no-prompts --no-hooks --no-ido --no-tools --no-skills --no-mcp --no-aspire
 
 # Workspace without IDO or local tools
 npx gaitor-orchestrator-cli my-project --no-ido --no-tools

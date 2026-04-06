@@ -39,6 +39,10 @@ export const FEATURES = {
     label: 'MCP server config (mcp.local.json)',
     description: 'Local MCP server configuration template for Context7, markitdown, and Penpot',
   },
+  aspire: {
+    label: 'Aspire AppHost + OTEL (app-host/)',
+    description: 'TypeScript Node.js service pre-wired for .NET Aspire orchestration with OpenTelemetry traces, metrics, and logs',
+  },
 };
 
 /**

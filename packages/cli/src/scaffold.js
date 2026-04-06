@@ -49,6 +49,9 @@ const FEATURE_MAP = {
   mcp: [
     { src: 'mcp/mcp.local.json', dest: 'mcp.local.json' },
   ],
+  aspire: [
+    { src: 'aspire/app-host', dest: 'app-host' },
+  ],
 };
 
 /**

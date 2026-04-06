@@ -29,6 +29,7 @@ program
   .option('--no-tools', 'Exclude local dev-tools package.json')
   .option('--no-skills', 'Exclude shared skill modules')
   .option('--no-mcp', 'Exclude MCP server config file (mcp.local.json)')
+  .option('--no-aspire', 'Exclude Aspire AppHost + OTEL scaffold')
   .action(async (projectNameArg, opts) => {
     console.log(`
       ::::::::      :::     ::::::::::: ::::::::::: ::::::::  :::::::::
@@ -67,6 +68,7 @@ program
         tools: opts.tools,
         skills: opts.skills,
         mcp: opts.mcp,
+        aspire: opts.aspire,
       };
       const anyFlagSet = Object.values(flagDefaults).some((v) => v === false);
       if (anyFlagSet) {
@@ -95,6 +97,10 @@ program
     console.log(`  cd ${projectName}`);
     if (features.includes('tools')) {
       console.log('  npm install  # install local dev-tools');
+    }
+    if (features.includes('aspire')) {
+      console.log('  cd app-host && npm install  # install Aspire AppHost + OTEL dependencies');
+      console.log('  cd app-host && npm run dev  # start the app-host service locally');
     }
     console.log('  # Open in your editor and read CONTEXT.md to get started\n');
     console.log('🐊🤖  Gaitor done! 🤠🥀\n');
