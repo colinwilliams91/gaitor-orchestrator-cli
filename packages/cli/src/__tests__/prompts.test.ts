@@ -1,5 +1,5 @@
 /**
- * Unit tests for prompts.js.
+ * Unit tests for prompts.ts.
  *
  * The interactive prompts (input / checkbox) need a TTY to run, so we only
  * test the pure-logic exports: FEATURES shape and the non-interactive

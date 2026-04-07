@@ -5,8 +5,14 @@
 
 import { input, checkbox } from '@inquirer/prompts';
 
+/** Metadata describing a single opt-in feature. */
+export interface FeatureMeta {
+  label: string;
+  description: string;
+}
+
 /** All available opt-in feature IDs and their display labels. */
-export const FEATURES = {
+export const FEATURES: Record<string, FeatureMeta> = {
   agents: {
     label: 'Agent personae (.github/agents/)',
     description: 'Orchestrator, Implementer, Reviewer, Documenter, and RALPH agent definitions',
@@ -45,15 +51,15 @@ export const FEATURES = {
  * Ask for the target project name.
  * If a positional argument was already provided, skip this prompt.
  *
- * @param {string|undefined} positional - Value supplied on the command line, if any.
- * @returns {Promise<string>} The resolved project name.
+ * @param positional - Value supplied on the command line, if any.
+ * @returns The resolved project name.
  */
-export async function askProjectName(positional) {
+export async function askProjectName(positional: string | undefined): Promise<string> {
   if (positional) return positional;
   return input({
     message: 'Project name:',
     default: 'my-ai-ddlc-project',
-    validate: (value) => {
+    validate: (value: string) => {
       const trimmed = value.trim();
       if (!trimmed) return 'Project name cannot be empty.';
       if (!/^[a-z0-9_-]+$/i.test(trimmed)) {
@@ -67,9 +73,9 @@ export async function askProjectName(positional) {
 /**
  * Ask which opt-in features to include in the scaffolded workspace.
  *
- * @returns {Promise<string[]>} Array of selected feature IDs.
+ * @returns Array of selected feature IDs.
  */
-export async function askFeatures() {
+export async function askFeatures(): Promise<string[]> {
   const choices = Object.entries(FEATURES).map(([value, meta]) => ({
     name: meta.label,
     value,
@@ -79,6 +85,5 @@ export async function askFeatures() {
   return checkbox({
     message: '🐊🤖 Select features to include (space to toggle, enter to confirm):',
     choices,
-    instructions: '\n  <space> toggle  <a> toggle all  <i> invert  <enter> confirm',
   });
 }
