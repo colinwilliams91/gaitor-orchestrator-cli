@@ -13,6 +13,19 @@ import packageJson from '../package.json' with { type: 'json' };
 import { askProjectName, askFeatures, FEATURES } from './prompts.js';
 import { scaffold } from './scaffold.js';
 
+/** Options populated by Commander from CLI flags. */
+interface CliOptions {
+  yes: boolean;
+  agents: boolean;
+  instructions: boolean;
+  prompts: boolean;
+  hooks: boolean;
+  ido: boolean;
+  tools: boolean;
+  skills: boolean;
+  mcp: boolean;
+}
+
 const program = new Command();
 
 program
@@ -29,7 +42,7 @@ program
   .option('--no-tools', 'Exclude local dev-tools package.json')
   .option('--no-skills', 'Exclude shared skill modules')
   .option('--no-mcp', 'Exclude MCP server config file (mcp.local.json)')
-  .action(async (projectNameArg, opts) => {
+  .action(async (projectNameArg: string | undefined, opts: CliOptions) => {
     console.log(`
       ::::::::      :::     ::::::::::: ::::::::::: ::::::::  :::::::::
     :+:    :+:   :+: :+:       :+:         :+:    :+:    :+: :+:    :+:
@@ -53,12 +66,12 @@ program
     }
 
     // Resolve feature selection
-    let features;
+    let features: string[];
     if (opts.yes) {
       features = Object.keys(FEATURES);
     } else {
       // Pre-filter based on --no-* flags
-      const flagDefaults = {
+      const flagDefaults: Record<string, boolean> = {
         agents: opts.agents,
         instructions: opts.instructions,
         prompts: opts.prompts,
@@ -85,7 +98,7 @@ program
     try {
       await scaffold({ projectName, targetDir, features });
     } catch (err) {
-      console.error(`\n❌💀  Scaffolding failed: ${err.message}\n`);
+      console.error(`\n❌💀  Scaffolding failed: ${(err as Error).message}\n`);
       process.exit(1);
     }
 

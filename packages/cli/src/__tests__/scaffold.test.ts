@@ -1,5 +1,5 @@
 /**
- * Unit tests for scaffold.js.
+ * Unit tests for scaffold.ts.
  *
  * Each test scaffolds into a fresh OS temp directory and cleans up afterwards,
  * so tests are fully isolated and leave no residue.
@@ -13,7 +13,7 @@ import { join } from 'node:path';
 import { scaffold } from '../scaffold.js';
 
 /** Create a unique temp directory, run fn(dir), then remove the temp dir. */
-async function withTmpDir(fn) {
+async function withTmpDir(fn: (dir: string) => Promise<void>): Promise<void> {
   const dir = mkdtempSync(join(tmpdir(), 'gaitor-scaffold-'));
   try {
     return await fn(dir);
