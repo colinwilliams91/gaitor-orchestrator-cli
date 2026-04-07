@@ -1,6 +1,13 @@
 <!-- markdownlint-disable -->
 # Changelog
 
+## [1.3.0](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v1.2.0...v1.3.0) (2026-04-07)
+
+
+### Features
+
+* **cli:** port codebase to TypeScript + sync package-lock.json from main ([6b26e79](https://github.com/colinwilliams91/gaitor-orchestrator-cli/commit/6b26e7942883451f63f851bc2a38348daf320692))
+
 ## [1.2.0](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v1.1.0...v1.2.0) (2026-04-07)
 
 
