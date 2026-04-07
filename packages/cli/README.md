@@ -104,3 +104,35 @@ npm install
 ## License
 
 GNU AGPL
+
+---
+
+## Development
+
+### Prerequisites
+
+- Node.js ≥ 20
+- Run `npm install` from the repository root (or `packages/cli/`) before running tests
+
+### Running tests
+
+```bash
+# From the repository root
+npm test --workspace=packages/cli
+
+# Or directly from the package directory
+cd packages/cli
+npm test
+```
+
+The test runner is the built-in **Node.js `node:test`** module — no extra framework required.
+
+### Test suite
+
+Tests live in `src/__tests__/`:
+
+| File | What it covers |
+|------|---------------|
+| `cli.test.js` | End-to-end CLI behaviour via `spawnSync`: `--help` output, `--version`, all `--no-*` flags, `--yes` non-interactive scaffolding, `{{PROJECT_NAME}}` substitution, and non-zero exit when the target directory already exists |
+| `scaffold.test.js` | Unit tests for `scaffold()`: base file creation, every opt-in feature (agents, instructions, prompts, hooks, ido, tools, skills, mcp), `_underscore`→`.dot` file/directory renaming, template substitution, and graceful handling of unknown feature IDs |
+| `prompts.test.js` | Unit tests for the `FEATURES` registry shape (keys, `label`, `description` fields) and the non-interactive fast-path of `askProjectName` |
