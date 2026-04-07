@@ -1,6 +1,13 @@
 <!-- markdownlint-disable -->
 # Changelog
 
+## [1.2.0](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v1.1.0...v1.2.0) (2026-04-07)
+
+
+### Features
+
+* **tests:** add e2e testing for cli scaffolding ([f5b87e5](https://github.com/colinwilliams91/gaitor-orchestrator-cli/commit/f5b87e5d160be495aad3f24609b97b141117ffb9))
+
 ## [1.1.0](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v1.0.1...v1.1.0) (2026-04-06)
 
 
