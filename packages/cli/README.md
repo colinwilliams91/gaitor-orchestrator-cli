@@ -51,9 +51,9 @@ Options:
 
 | File | Purpose |
 |------|---------|
-| `CONTEXT.md` | Single source of truth for all agents |
+| `CONTEXT.md` | Single source of truth and inter-agent bus |
 | `SPEC.md` | Project specification draft |
-| `.gitignore` | Standard gitignore with AI/LLM additions |
+| `.gitignore` | Standard gitignore with node + AI/LLM additions |
 
 ---
 
@@ -64,7 +64,7 @@ Options:
 | `AGENTS.md` | Adapter for non-Copilot harnesses |
 | `CLAUDE.md` | Adapter for Claude harnesses |
 | `.cursorrules` | Adapter for Cursor agent interactions |
-| `.github/copilot-instructions.md` | GitHub Copilot workspace instructions |
+| `.github/copilot-instructions.md` | Adapter for GitHub Copilot workspace |
 
 ### Opt-in features
 

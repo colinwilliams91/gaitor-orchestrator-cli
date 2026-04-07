@@ -54,7 +54,7 @@ This workspace provides a scaffold for AI-driven development with multiple colla
 
 | ID | Decision | Rationale |
 |----|----------|-----------|
-| AD-001 | Copilot workspace files live under `.github/` | GitHub Copilot discovers workspace instructions there; keeps root clean |
+| AD-001 | Copilot workspace files live under `.github/` | GitHub Copilot discovers workspace instructions and routes them to `CONTEXT.md`; keeps root clean |
 | AD-002 | Claude implements, OpenAI reviews | Leverage model diversity for adversarial quality checks |
 | AD-003 | RALPH loop drives iteration | Structured reflection prevents aimless cycling |
 | AD-004 | `CONTEXT.md` is the inter-agent bus | Stateless agents need a shared, file-based state store |
