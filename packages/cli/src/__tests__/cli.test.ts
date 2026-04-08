@@ -67,6 +67,24 @@ test('--help includes --yes flag', () => {
   assert.match(result.stdout, /--yes/);
 });
 
+test('--help includes the create alias workflow', () => {
+  const result = spawnSync(process.execPath, [cliPath, '--help'], {
+    encoding: 'utf8',
+  });
+
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /gaitor create \[project-name\]/);
+  assert.match(result.stdout, /gaitor-create \[project-name\]/);
+  assert.doesNotMatch(result.stdout, /create-gaitor \[project-name\]/);
+});
+
+test('package manifest exposes only the supported create alias bins', () => {
+  assert.equal(packageJson.bin['gaitor'], 'bin/create-gaitor.js');
+  assert.equal(packageJson.bin['gaitor-create'], 'bin/create-gaitor.js');
+  assert.equal(packageJson.bin['gaitor-orchestrator-cli'], 'bin/create-gaitor.js');
+  assert.equal('create-gaitor' in packageJson.bin, false);
+});
+
 // ---------------------------------------------------------------------------
 // Scaffolding via --yes flag (non-interactive)
 // ---------------------------------------------------------------------------
@@ -86,6 +104,25 @@ test('--yes scaffolds a project in a temp directory', () => {
     assert.ok(existsSync(projectDir), 'Project directory should be created');
     assert.ok(existsSync(join(projectDir, 'CONTEXT.md')), 'CONTEXT.md should exist');
     assert.ok(existsSync(join(projectDir, 'AGENTS.md')), 'AGENTS.md should exist');
+  } finally {
+    rmSync(tmpDir, { recursive: true, force: true });
+  }
+});
+
+test('create subcommand scaffolds a project in a temp directory', () => {
+  const tmpDir = mkdtempSync(join(tmpdir(), 'gaitor-test-'));
+  const projectName = 'create-subcommand-project';
+  const projectDir = join(tmpDir, projectName);
+
+  try {
+    const result = spawnSync(process.execPath, [cliPath, 'create', '--yes', projectName], {
+      encoding: 'utf8',
+      cwd: tmpDir,
+    });
+
+    assert.equal(result.status, 0, `CLI exited with ${result.status}\nstdout: ${result.stdout}\nstderr: ${result.stderr}`);
+    assert.ok(existsSync(projectDir), 'Project directory should be created');
+    assert.ok(existsSync(join(projectDir, 'CONTEXT.md')), 'CONTEXT.md should exist');
   } finally {
     rmSync(tmpDir, { recursive: true, force: true });
   }

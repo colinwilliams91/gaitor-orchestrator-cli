@@ -17,10 +17,13 @@ npx gaitor-orchestrator-cli my-project --yes
 
 # Or install globally
 npm install -g gaitor-orchestrator-cli
-gaitor my-project
+gaitor create my-project
 ```
 
 The source for the published package lives in `packages/cli` inside the `gaitor-orchestrator-cli` repository.
+
+The published package exposes these entrypoints: `gaitor`, `gaitor-create`, and `gaitor-orchestrator-cli`.
+The CLI also accepts the `gaitor create` workflow, which keeps the common global-install path concise.
 
 ## Usage
 
@@ -44,6 +47,10 @@ Options:
   --no-skills              Exclude shared skill modules
   --no-mcp                 Exclude mcp.local.json plug-n-play config
   -h, --help               display help for command
+
+Aliases:
+  gaitor create [project-name]
+  gaitor-create [project-name]
 ```
 
 ## What gets scaffolded
@@ -88,6 +95,10 @@ npx gaitor-orchestrator-cli my-project --no-agents --no-instructions --no-prompt
 
 # Workspace without IDO or local tools
 npx gaitor-orchestrator-cli my-project --no-ido --no-tools
+
+# Global install workflow with explicit create verb
+gaitor create my-project --yes
+gaitor-create my-project --yes
 ```
 
 ## After scaffolding
@@ -113,6 +124,28 @@ GNU AGPL
 
 - Node.js ≥ 20
 - Run `npm install` from the repository root (or `packages/cli/`) before running tests
+
+### Running the CLI locally from this repo
+
+For contributors working inside this monorepo, use the root script alias if you do not want to install globally.
+
+```bash
+# this will collocate my-project in packages/cli/ for easy access to the source code and test files
+npm run gaitor -- --help
+npm run gaitor -- my-project
+```
+
+That script builds `packages/cli` and then runs the CLI, so you do not need to invoke the bin file manually.
+
+For published-package usage as an end user, keep using:
+
+```bash
+npx gaitor-orchestrator-cli my-project
+# or install globally
+npm i -g gaitor-orchestrator-cli
+gaitor create my-project
+gaitor-create my-project
+```
 
 ### Running tests
 
