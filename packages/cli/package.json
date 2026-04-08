@@ -33,7 +33,7 @@
   "types": "./dist/index.d.ts",
   "bin": {
     "gaitor": "bin/create-gaitor.js",
-    "create-gaitor": "bin/create-gaitor.js",
+    "gaitor-create": "bin/create-gaitor.js",
     "gaitor-orchestrator-cli": "bin/create-gaitor.js"
   },
   "files": [
