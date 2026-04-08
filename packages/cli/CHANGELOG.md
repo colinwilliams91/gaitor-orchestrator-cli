@@ -1,6 +1,17 @@
 <!-- markdownlint-disable -->
 # Changelog
 
+## [2.0.0](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v1.3.0...v2.0.0) (2026-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove accidental create-gaitor alias ([#24](https://github.com/colinwilliams91/gaitor-orchestrator-cli/issues/24))
+
+### Bug Fixes
+
+* remove accidental create-gaitor alias ([#24](https://github.com/colinwilliams91/gaitor-orchestrator-cli/issues/24)) ([c5c0f5b](https://github.com/colinwilliams91/gaitor-orchestrator-cli/commit/c5c0f5b1584832c4cdc83ad4b4d784e79af494bf))
+
 ## [1.3.0](https://github.com/colinwilliams91/gaitor-orchestrator-cli/compare/v1.2.0...v1.3.0) (2026-04-07)
 
 
