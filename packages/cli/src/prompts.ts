@@ -5,8 +5,14 @@
 
 import { input, checkbox } from '@inquirer/prompts';
 
+/** Metadata describing a single opt-in feature. */
+export interface FeatureMeta {
+  label: string;
+  description: string;
+}
+
 /** All available opt-in feature IDs and their display labels. */
-export const FEATURES = {
+export const FEATURES: Record<string, FeatureMeta> = {
   agents: {
     label: 'Agent personae (.github/agents/)',
     description: 'Orchestrator, Implementer, Reviewer, Documenter, and RALPH agent definitions',
@@ -51,24 +57,31 @@ export const FEATURES = {
     label: 'Cursor (anysphere)',
     description: 'Cursor code editor and harness support',
   },
+  mcp: {
+    label: 'MCP server config (mcp.local.json)',
+    description: 'Local MCP server configuration template for Context7, markitdown, and Penpot',
+  },
 };
 
-export const FEATURE_IDS = ['agents', 'instructions', 'prompts', 'hooks', 'ido', 'tools', 'skills'];
-export const HARNESS_IDS = ['copilot', 'claude', 'codex', 'cursor'];
+export const FEATURE_IDS = ['agents', 'instructions', 'prompts', 'hooks', 'ido', 'tools', 'skills', 'mcp'] as const;
+export const HARNESS_IDS = ['copilot', 'claude', 'codex', 'cursor'] as const;
+export type FeatureId = (typeof FEATURE_IDS)[number];
+export type HarnessId = (typeof HARNESS_IDS)[number];
+type SelectableOptionId = FeatureId | HarnessId | 'harnesses';
 
 /**
  * Ask for the target project name.
  * If a positional argument was already provided, skip this prompt.
  *
- * @param {string|undefined} positional - Value supplied on the command line, if any.
- * @returns {Promise<string>} The resolved project name.
+ * @param positional - Value supplied on the command line, if any.
+ * @returns The resolved project name.
  */
-export async function askProjectName(positional) {
+export async function askProjectName(positional: string | undefined): Promise<string> {
   if (positional) return positional;
   return input({
     message: 'Project name:',
     default: 'my-ai-ddlc-project',
-    validate: (value) => {
+    validate: (value: string) => {
       const trimmed = value.trim();
       if (!trimmed) return 'Project name cannot be empty.';
       if (!/^[a-z0-9_-]+$/i.test(trimmed)) {
@@ -82,9 +95,9 @@ export async function askProjectName(positional) {
 /**
  * Ask which opt-in features to include in the scaffolded workspace.
  *
- * @returns {Promise<string[]>} Array of selected feature IDs.
+ * @returns Array of selected feature IDs.
  */
-export async function askFeatures() {
+export async function askFeatures(): Promise<string[]> {
   const choices = Object.entries(FEATURES).map(([value, meta]) => ({
     name: meta.label,
     value,
@@ -94,17 +107,16 @@ export async function askFeatures() {
   return checkbox({
     message: '🐊🤖 Select features to include (space to toggle, enter to confirm):',
     choices,
-    instructions: '\n  <space> toggle  <a> toggle all  <enter> confirm',
   });
 }
 
 /**
  * Resolve selected feature and harness IDs from Commander --no-* flags.
  *
- * @param {Record<string, boolean>} opts
- * @returns {string[]}
+ * @param opts - Commander option values.
+ * @returns Selected feature and harness IDs.
  */
-export function resolveSelectedFeatures(opts) {
+export function resolveSelectedFeatures(opts: Partial<Record<SelectableOptionId, boolean>>): string[] {
   const selectedFeatures = FEATURE_IDS.filter((featureId) => opts[featureId] !== false);
   const selectedHarnesses = opts.harnesses === false
     ? []
@@ -116,9 +128,9 @@ export function resolveSelectedFeatures(opts) {
 /**
  * Determine whether any --no-* selection flags were supplied.
  *
- * @param {Record<string, boolean>} opts
- * @returns {boolean}
+ * @param opts - Commander option values.
+ * @returns Whether any feature or harness selection flag was explicitly disabled.
  */
-export function hasSelectionFlagOverrides(opts) {
-  return ['harnesses', ...FEATURE_IDS, ...HARNESS_IDS].some((optionId) => opts[optionId] === false);
+export function hasSelectionFlagOverrides(opts: Partial<Record<SelectableOptionId, boolean>>): boolean {
+  return (['harnesses', ...FEATURE_IDS, ...HARNESS_IDS] as const).some((optionId) => opts[optionId] === false);
 }

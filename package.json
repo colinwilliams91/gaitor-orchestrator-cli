@@ -11,6 +11,7 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
+    "gaitor": "npm run build --workspace=packages/cli && npm run start --workspace=packages/cli --",
     "install:tools": "npm install",
     "browser": "playwright-cli",
     "diagram": "mmdc"

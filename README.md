@@ -31,10 +31,25 @@ SPEC.md                   Product and delivery specification for the CLI
 ## Development
 
 ```bash
+# Install dependencies (first time only)
 npm install
+
+# Run all tests
 npm test --workspace=packages/cli
+
+# Smoke-test the CLI manually
 node packages/cli/bin/create-gaitor.js demo-project --yes
 ```
+
+### Test suite
+
+Tests live in `packages/cli/src/__tests__/` and use the built-in Node.js test runner (`node:test`). No extra test framework is needed.
+
+| File | What it covers |
+|------|---------------|
+| `cli.test.js` | End-to-end CLI behaviour: `--help`, `--version`, `--yes` scaffolding, `{{PROJECT_NAME}}` substitution, and non-zero exit on conflicting directory |
+| `scaffold.test.js` | Unit tests for every `scaffold()` path: base files, each opt-in feature, `_underscore` → `.dot` renaming, template substitution, and unknown-feature resilience |
+| `prompts.test.js` | Unit tests for `FEATURES` registry shape and the non-interactive fast-path of `askProjectName` |
 
 ## Release Flow
 

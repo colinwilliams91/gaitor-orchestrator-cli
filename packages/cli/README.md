@@ -17,10 +17,13 @@ npx gaitor-orchestrator-cli my-project --yes
 
 # Or install globally
 npm install -g gaitor-orchestrator-cli
-gaitor my-project
+gaitor create my-project
 ```
 
 The source for the published package lives in `packages/cli` inside the `gaitor-orchestrator-cli` repository.
+
+The published package exposes these entrypoints: `gaitor`, `gaitor-create`, and `gaitor-orchestrator-cli`.
+The CLI also accepts the `gaitor create` workflow, which keeps the common global-install path concise.
 
 ## Usage
 
@@ -49,7 +52,12 @@ Options:
   --no-claude              Exclude Claude Code harness files
   --no-codex               Exclude Codex harness files
   --no-cursor              Exclude Cursor harness files
+  --no-mcp                 Exclude mcp.local.json plug-n-play config
   -h, --help               display help for command
+
+Aliases:
+  gaitor create [project-name]
+  gaitor-create [project-name]
 ```
 
 ## What gets scaffolded
@@ -87,6 +95,7 @@ Options:
 | `--ido` (default on) | `.github/ISSUE_TEMPLATE/` and `.github/pull_request_template.md` for IDO-enabled repositories |
 | `--tools` (default on) | Root `package.json` with `@playwright/cli` and `@mermaid-js/mermaid-cli` devDependencies |
 | `--skills` (default on) | `.agents/skills/` — Portable `playwright-cli`, `mermaid-cli`, `frontend-design` and `checkpoint-commit` skill modules |
+| `--mcp` (default on) | Root `mcp.local.json` with plug-n-play config for all scaffolded features (rename to ~\\Users\\<username>\\mcp-config.json OR C:\\Users\\<username>\\AppData\\Roaming\\Code\\User\\mcp.json or intra-project path) |
 
 ## Examples
 
@@ -99,6 +108,13 @@ npx gaitor-orchestrator-cli my-project --no-ido --no-tools
 
 # Workspace with Claude and Codex harness support only
 npx gaitor-orchestrator-cli my-project --no-copilot --no-cursor
+
+# Workspace without harness files or MCP config
+npx gaitor-orchestrator-cli my-project --no-harnesses --no-mcp
+
+# Global install workflow with explicit create verb
+gaitor create my-project --yes
+gaitor-create my-project --yes
 ```
 
 ## After scaffolding
@@ -115,3 +131,57 @@ npm install
 ## License
 
 GNU AGPL
+
+---
+
+## Development
+
+### Prerequisites
+
+- Node.js ≥ 20
+- Run `npm install` from the repository root (or `packages/cli/`) before running tests
+
+### Running the CLI locally from this repo
+
+For contributors working inside this monorepo, use the root script alias if you do not want to install globally.
+
+```bash
+# this will collocate my-project in packages/cli/ for easy access to the source code and test files
+npm run gaitor -- --help
+npm run gaitor -- my-project
+```
+
+That script builds `packages/cli` and then runs the CLI, so you do not need to invoke the bin file manually.
+
+For published-package usage as an end user, keep using:
+
+```bash
+npx gaitor-orchestrator-cli my-project
+# or install globally
+npm i -g gaitor-orchestrator-cli
+gaitor create my-project
+gaitor-create my-project
+```
+
+### Running tests
+
+```bash
+# From the repository root
+npm test --workspace=packages/cli
+
+# Or directly from the package directory
+cd packages/cli
+npm test
+```
+
+The test runner is the built-in **Node.js `node:test`** module — no extra framework required.
+
+### Test suite
+
+Tests live in `src/__tests__/`:
+
+| File | What it covers |
+|------|---------------|
+| `cli.test.js` | End-to-end CLI behaviour via `spawnSync`: `--help` output, `--version`, all `--no-*` flags, `--yes` non-interactive scaffolding, `{{PROJECT_NAME}}` substitution, and non-zero exit when the target directory already exists |
+| `scaffold.test.js` | Unit tests for `scaffold()`: base file creation, every opt-in feature (agents, instructions, prompts, hooks, ido, tools, skills, mcp), `_underscore`→`.dot` file/directory renaming, template substitution, and graceful handling of unknown feature IDs |
+| `prompts.test.js` | Unit tests for the `FEATURES` registry shape (keys, `label`, `description` fields) and the non-interactive fast-path of `askProjectName` |

@@ -1,6 +1,6 @@
 {
   "name": "gaitor-orchestrator-cli",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Harness-agnostic CLI scaffolding tool for cost-aware AI-Driven Development Lifecycle (AI-DDLC) workspace with multi-agent parallelization.",
   "keywords": [
     "ai",
@@ -29,16 +29,19 @@
     "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
     "gaitor": "bin/create-gaitor.js",
-    "create-gaitor": "bin/create-gaitor.js",
+    "gaitor-create": "bin/create-gaitor.js",
     "gaitor-orchestrator-cli": "bin/create-gaitor.js"
   },
   "files": [
     "bin/",
+    "dist/",
     "src/",
     "templates/",
+    "tsconfig.json",
     "CHANGELOG.md",
     "README.md"
   ],
@@ -50,7 +53,12 @@
     "commander": "^14.0.3"
   },
   "scripts": {
-    "test": "node --test",
+    "build": "tsc",
+    "test": "tsc && node --test dist/__tests__/cli.test.js dist/__tests__/prompts.test.js dist/__tests__/scaffold.test.js",
     "start": "node bin/create-gaitor.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.39",
+    "typescript": "^5.9.3"
   }
 }
