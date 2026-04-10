@@ -1,0 +1,13 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "type": "command",
+        "windows": "powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File .github\\hooks\\ido-context-sync\\trigger-sync.ps1",
+        "linux": ".github/hooks/ido-context-sync/trigger-sync.sh",
+        "osx": ".github/hooks/ido-context-sync/trigger-sync.sh",
+        "timeout": 20
+      }
+    ]
+  }
+}
