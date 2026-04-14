@@ -24,6 +24,11 @@ func buildForm(m model) *huh.Form {
 			huh.NewInput().
 				Title(projectNamePrompt).
 				Validate(validateProjectName),
+			huh.NewConfirm().
+				Title("Scaffold your project?").
+				Affirmative("Yes!").
+				Negative("No.").
+				Value(&m.confirm),
 		),
 	)
 	return form
