@@ -14,14 +14,20 @@ import (
 var templateFS embed.FS
 
 func main() {
+	fmt.Fprintln(os.Stdout, "Initiate GAITOR creator... 🤖🐊")
 	m := initialModel()
 	form := buildForm(m)
+
+	// TODO: put spinner somewhere before form.Run() ?
 
 	err := form.Run()
 	if err != nil {
 		fmt.Println("Uh oh:", err)
 		os.Exit(1)
 	}
+
+	// TODO: _ = spinner.New().Title("Preparing your burger...").WithAccessible(accessible).Action(prepareBurger).Run()
+	// SPINNER takes .Action() func arg that runs the long running processing task (inside main scope or buildForm scope?)
 }
 
 // TODO: migrate to Tea methods program: (place at EOF)
