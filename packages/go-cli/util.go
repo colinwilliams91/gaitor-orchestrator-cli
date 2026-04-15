@@ -22,15 +22,27 @@ func buildForm(m model) *huh.Form {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewNote().
-				Title("ASCII").
+				Title("Scaffold your AI-Driven Development Project in seconds 🤖🐊...").
 				Description(ASCIIArt).
 				Next(true).
-				NextLabel("Get started..."),
+				NextLabel("Press any key to start..."),
 		),
 		huh.NewGroup( // step 0: project name input
 			huh.NewInput().
 				Title(projectNamePrompt).
 				Validate(validateProjectName),
+		),
+		huh.NewGroup(
+			huh.NewMultiSelect[string]().
+				Options(
+					huh.NewOption("copilot", "copilot"),
+					huh.NewOption("claude", "claude"),
+					huh.NewOption("codex", "codex"),
+					huh.NewOption("cursor", "cursor"),
+				).
+				Key("Harnesses").
+				Title("Select AI Harnesses").
+				Value(&m.harnessChoices),
 		),
 		huh.NewGroup(
 			huh.NewConfirm().
