@@ -20,10 +20,19 @@ func validateProjectName(input string) error {
 
 func buildForm(m model) *huh.Form {
 	form := huh.NewForm(
+		huh.NewGroup(
+			huh.NewNote().
+				Title("ASCII").
+				Description(ASCIIArt).
+				Next(true).
+				NextLabel("Get started..."),
+		),
 		huh.NewGroup( // step 0: project name input
 			huh.NewInput().
 				Title(projectNamePrompt).
 				Validate(validateProjectName),
+		),
+		huh.NewGroup(
 			huh.NewConfirm().
 				Title("Scaffold your project?").
 				Affirmative("Yes!").
