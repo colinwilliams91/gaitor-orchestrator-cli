@@ -45,6 +45,22 @@ func buildForm(m model) *huh.Form {
 				Value(&m.harnessChoices),
 		),
 		huh.NewGroup(
+			huh.NewMultiSelect[string]().
+				Options(
+					huh.NewOption("agents", "agents"),
+					huh.NewOption("instructions", "instructions"),
+					huh.NewOption("hooks", "hooks"),
+					huh.NewOption("ido", "ido"),
+					huh.NewOption("tools", "tools"),
+					huh.NewOption("skills", "skills"),
+					huh.NewOption("mcp", "mcp"),
+					huh.NewOption("aspire", "aspire"),
+				).
+				Key("Features").
+				Title("Select AI-Driven Development Features").
+				Value(&m.featureChoices),
+		),
+		huh.NewGroup(
 			huh.NewConfirm().
 				Title("Scaffold your project?").
 				Affirmative("Yes!").
