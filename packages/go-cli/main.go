@@ -26,9 +26,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	// TODO: _ = spinner.New().Title("Preparing your burger...").WithAccessible(accessible).Action(prepareBurger).Run()
-	// SPINNER takes .Action() func arg that runs the long running processing task (inside main scope or buildForm scope?)
-
 	// DEBUG LOGS
 	fmt.Println(&m)
 }
