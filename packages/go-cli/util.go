@@ -18,7 +18,7 @@ func validateProjectName(input string) error {
 	return nil
 }
 
-func buildForm(m model) *huh.Form {
+func buildForm(config *scaffoldConfig) *huh.Form {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewNote().
@@ -30,6 +30,7 @@ func buildForm(m model) *huh.Form {
 		huh.NewGroup( // step 0: project name input
 			huh.NewInput().
 				Title(projectNamePrompt).
+				Value(&config.projectName).
 				Validate(validateProjectName),
 		),
 		huh.NewGroup(
@@ -42,7 +43,7 @@ func buildForm(m model) *huh.Form {
 				).
 				Key("Harnesses").
 				Title("Select AI Harnesses").
-				Value(&m.harnessChoices),
+				Value(&config.harnessSelections),
 		),
 		huh.NewGroup(
 			huh.NewMultiSelect[string]().
@@ -65,7 +66,7 @@ func buildForm(m model) *huh.Form {
 				Title("Scaffold your project?").
 				Affirmative("Yes!").
 				Negative("No.").
-				Value(&m.confirm),
+				Value(&config.confirm),
 		),
 	)
 	return form
