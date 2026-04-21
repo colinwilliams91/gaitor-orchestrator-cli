@@ -24,6 +24,9 @@ func main() {
 		return
 	}
 
+	// TODO: _ = spinner.New().Title("Preparing your burger...").WithAccessible(accessible).Action(prepareBurger).Run()
+	// SPINNER takes .Action() func arg that runs the long running processing task (inside main scope or buildForm scope?)
+
 	if err := scaffoldProject(config); err != nil {
 		fmt.Println("Uh oh:", err)
 		os.Exit(1)
@@ -33,6 +36,8 @@ func main() {
 type scaffoldConfig struct {
 	projectName       string
 	harnessSelections []string
+	featureSelections []string
+	yes               bool
 	confirm           bool
 }
 

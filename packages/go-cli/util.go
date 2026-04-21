@@ -34,6 +34,13 @@ func buildForm(config *scaffoldConfig) *huh.Form {
 				Validate(validateProjectName),
 		),
 		huh.NewGroup(
+			huh.NewConfirm().
+				Affirmative("Yes!").
+				Negative("No.").
+				Title("Before we begin, would you like to bypass configuration and scaffold all features?").
+				Value(&config.yes),
+		),
+		huh.NewGroup(
 			huh.NewMultiSelect[string]().
 				Options(
 					huh.NewOption("copilot", "copilot"),
@@ -42,9 +49,11 @@ func buildForm(config *scaffoldConfig) *huh.Form {
 					huh.NewOption("cursor", "cursor"),
 				).
 				Key("Harnesses").
-				Title("Select AI Harnesses").
+				Title("Select one or more AI Harnesses to support").
 				Value(&config.harnessSelections),
-		),
+		).WithHideFunc(func() bool {
+			return config.yes
+		}),
 		huh.NewGroup(
 			huh.NewMultiSelect[string]().
 				Options(
@@ -59,8 +68,10 @@ func buildForm(config *scaffoldConfig) *huh.Form {
 				).
 				Key("Features").
 				Title("Select AI-Driven Development Features").
-				Value(&m.featureChoices),
-		),
+				Value(&config.featureSelections),
+		).WithHideFunc(func() bool {
+			return config.yes
+		}),
 		huh.NewGroup(
 			huh.NewConfirm().
 				Title("Scaffold your project?").
