@@ -74,7 +74,28 @@ func buildForm(config *scaffoldConfig) *huh.Form {
 		}),
 		huh.NewGroup(
 			huh.NewConfirm().
-				Title("Scaffold your project?").
+				TitleFunc(func() string {
+					// Manually add all to model for --yes flag
+					if config.yes {
+						config.harnessSelections = []string{
+							"copilot",
+							"claude",
+							"codex",
+							"cursor",
+						}
+						config.featureSelections = []string{
+							"agents",
+							"instructions",
+							"hooks",
+							"ido",
+							"tools",
+							"skills",
+							"mcp",
+							"aspire",
+						}
+					}
+					return "Scaffold your project?"
+				}, &config).
 				Affirmative("Yes!").
 				Negative("No.").
 				Value(&config.confirm),
